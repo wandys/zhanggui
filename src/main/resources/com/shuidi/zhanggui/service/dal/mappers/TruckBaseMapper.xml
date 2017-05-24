@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.shuidi.zhanggui.service.dal.mappers.TruckBaseMapper">
+    <select id="getTruck" resultType="com.shuidi.zhanggui.service.dal.entity.TruckBase">
+            SELECT *
+              FROM   TRUCK_BASE
+             WHERE   id = #{id}
+    </select>
+</mapper>
