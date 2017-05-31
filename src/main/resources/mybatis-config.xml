@@ -24,12 +24,14 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
+        <package name="com.shuidi.uc.service.dal.entity"/>
         <package name="com.shuidi.zhanggui.service.dal.entity"/>
     </typeAliases>
     <mappers>
         <!--<mapper resource="com/wandy/mapper/HaoqiwangTruckRelationMapper.xml"/>
         <mapper resource="com/wandy/mapper/TruckBaseMapper.xml"/>
         <mapper resource="com/wandy/mapper/YhTruckInfoMapper.xml"/>-->
+        <package name="com.shuidi.uc.service.dal.mappers"/>
         <package name="com.shuidi.zhanggui.service.dal.mappers"/>
     </mappers>
 </configuration>

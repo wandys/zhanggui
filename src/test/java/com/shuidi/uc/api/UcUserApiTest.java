@@ -1,4 +1,4 @@
-package com.shuidi.zhanggui.api;
+package com.shuidi.uc.api;
 
 import org.junit.Test;
 import org.springframework.test.web.servlet.MvcResult;
@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by wandy on 2017-05-24.
  */
-public class UcUserApiTest extends ApiDbunitBaseTest{
+public class UcUserApiTest extends ApiDbunitBaseTest {
     @Test
     public void getUser() throws Exception {
         RequestBuilder request = null;

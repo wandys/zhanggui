@@ -1,4 +1,4 @@
-package com.shuidi.zhanggui;
+package com.shuidi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

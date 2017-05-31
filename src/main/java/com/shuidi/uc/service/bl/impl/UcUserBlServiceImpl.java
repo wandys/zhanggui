@@ -1,8 +1,8 @@
-package com.shuidi.zhanggui.service.bl.impl;
+package com.shuidi.uc.service.bl.impl;
 
-import com.shuidi.zhanggui.service.bl.UcUserBlServie;
-import com.shuidi.zhanggui.service.dal.UcUserDalService;
-import com.shuidi.zhanggui.service.dal.entity.UcUser;
+import com.shuidi.uc.service.bl.UcUserBlServie;
+import com.shuidi.uc.service.dal.UcUserDalService;
+import com.shuidi.uc.service.dal.entity.UcUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

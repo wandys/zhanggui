@@ -1,8 +1,8 @@
-package com.shuidi.zhanggui.service.dal.impl;
+package com.shuidi.uc.service.dal.impl;
 
-import com.shuidi.zhanggui.service.dal.UcUserDalService;
-import com.shuidi.zhanggui.service.dal.entity.UcUser;
-import com.shuidi.zhanggui.service.dal.mappers.UcUserMapper;
+import com.shuidi.uc.service.dal.UcUserDalService;
+import com.shuidi.uc.service.dal.entity.UcUser;
+import com.shuidi.uc.service.dal.mappers.UcUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

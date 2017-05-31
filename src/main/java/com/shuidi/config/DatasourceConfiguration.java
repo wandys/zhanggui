@@ -1,4 +1,4 @@
-package com.shuidi.zhanggui.config;
+package com.shuidi.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;

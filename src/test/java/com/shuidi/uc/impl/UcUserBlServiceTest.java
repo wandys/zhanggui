@@ -1,8 +1,8 @@
-package com.shuidi.zhanggui.service.bl.impl;
+package com.shuidi.uc.impl;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.shuidi.zhanggui.service.bl.UcUserBlServie;
-import com.shuidi.zhanggui.service.dal.entity.UcUser;
+import com.shuidi.uc.service.bl.UcUserBlServie;
+import com.shuidi.uc.service.dal.entity.UcUser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by wandy on 2017-05-23.
  */
-public class UcUserBlServiceTest extends ServiceBaseTest{
+public class UcUserBlServiceTest extends ServiceBaseTest {
     @Autowired
     private UcUserBlServie ucUserBlServie;
 

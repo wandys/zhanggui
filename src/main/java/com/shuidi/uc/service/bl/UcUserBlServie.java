@@ -1,16 +1,19 @@
-package com.shuidi.zhanggui.service.dal.mappers;
+package com.shuidi.uc.service.bl;
 
-import com.shuidi.zhanggui.service.dal.entity.UcUser;
-import org.apache.ibatis.annotations.Mapper;
+import com.shuidi.uc.service.dal.entity.UcUser;
 
 import java.util.List;
 
 /**
- * Created by wandy on 2017-05-21.
+ * Describe :
+ * <p>
+ * Created by wandy .
+ * <p>
+ * Version 0.0.1
+ * Create Time 2017-05-21.
+ * Change Time 2017-05-21 19:38.
  */
-@Mapper
-public interface UcUserMapper {
-
+public interface UcUserBlServie {
     /**
      * 根据用户id查询用户信息.
      *
@@ -32,7 +35,7 @@ public interface UcUserMapper {
      *
      * @param user 用户信息
      */
-    public void saveUcUser(UcUser user);
+    public Long saveUcUser(UcUser user);
 
     /**
      * 更新用户信息

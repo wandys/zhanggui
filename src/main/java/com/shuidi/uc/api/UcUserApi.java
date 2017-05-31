@@ -1,8 +1,8 @@
-package com.shuidi.zhanggui.api;
+package com.shuidi.uc.api;
 
-import com.shuidi.zhanggui.api.resource.UcUserResource;
-import com.shuidi.zhanggui.service.bl.UcUserBlServie;
-import com.shuidi.zhanggui.service.dal.entity.UcUser;
+import com.shuidi.uc.api.resource.UcUserResource;
+import com.shuidi.uc.service.bl.UcUserBlServie;
+import com.shuidi.uc.service.dal.entity.UcUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

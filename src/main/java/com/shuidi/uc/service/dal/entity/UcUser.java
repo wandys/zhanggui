@@ -1,4 +1,4 @@
-package com.shuidi.zhanggui.service.dal.entity;
+package com.shuidi.uc.service.dal.entity;
 
 import java.io.Serializable;
 import java.util.Date;

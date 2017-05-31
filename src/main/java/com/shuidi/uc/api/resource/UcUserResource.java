@@ -1,6 +1,6 @@
-package com.shuidi.zhanggui.api.resource;
+package com.shuidi.uc.api.resource;
 
-import com.shuidi.zhanggui.service.dal.entity.UcUser;
+import com.shuidi.uc.service.dal.entity.UcUser;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.util.ArrayList;

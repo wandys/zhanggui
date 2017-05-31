@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.shuidi.zhanggui.service.dal.mappers.UcUserMapper">
+<mapper namespace="com.shuidi.uc.service.dal.mappers.UcUserMapper">
 
     <sql id="selectParam">
         id,
@@ -15,14 +15,14 @@
         last_login_time
     </sql>
 
-    <select id="getUserById" resultType="com.shuidi.zhanggui.service.dal.entity.UcUser">
+    <select id="getUserById" resultType="com.shuidi.uc.service.dal.entity.UcUser">
             SELECT
             <include refid="selectParam"></include>
             FROM   uc_user
             WHERE   id = #{id}
     </select>
 
-    <select id="findUcUsers" resultType="java.util.List">
+    <select id="findUcUsers" parameterType="com.shuidi.uc.service.dal.entity.UcUser" resultType="java.util.List">
         SELECT
         <include refid="selectParam"></include>
         FROM   uc_user
@@ -42,7 +42,7 @@
         </where>
     </select>
 
-    <insert id="saveUcUser" keyProperty="id" parameterType="com.shuidi.zhanggui.service.dal.entity.UcUser">
+    <insert id="saveUcUser" keyProperty="id" parameterType="com.shuidi.uc.service.dal.entity.UcUser">
         INNER INTO
         uc_user(
         id,
@@ -67,7 +67,7 @@
         #{lastLoginTime}
         )
     </insert>
-    <update id="updateUcUser" parameterType="com.shuidi.zhanggui.service.dal.entity.UcUser">
+    <update id="updateUcUser" parameterType="com.shuidi.uc.service.dal.entity.UcUser">
         UPDATE
           uc_user
         <set>

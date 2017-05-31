@@ -1,6 +1,6 @@
-package com.shuidi.zhanggui.service.dal;
+package com.shuidi.uc.service.dal;
 
-import com.shuidi.zhanggui.service.dal.entity.UcUser;
+import com.shuidi.uc.service.dal.entity.UcUser;
 
 import java.util.List;
 
