@@ -1,15 +1,17 @@
 package com.shuidi.uc.api;
 
+import com.alibaba.fastjson.JSONObject;
 import com.shuidi.uc.api.encrypt.Rsa;
 import com.shuidi.uc.service.bl.UcUserBlServie;
 import com.shuidi.uc.service.dal.entity.UcUser;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -35,22 +37,32 @@ public class loginApi {
 
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String getPrivateKey(HttpSession session) throws Exception {
+    public Object getPrivateKey(HttpServletResponse response) throws Exception {
 
         keyMap = Rsa.initKey();
-        System.out.print(Rsa.getPublicKey(keyMap));
-        session.setAttribute("publicKey", Rsa.getPublicKey(keyMap));
-        return Rsa.getPublicKey(keyMap);
+        log.info(Rsa.getPublicKey(keyMap));
+        //OutputStream outputStream = response.getOutputStream();
+        //outputStream.write(Rsa.getPublicKey(keyMap).getBytes());
+        //outputStream.close();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("publicKey",Rsa.getPublicKey(keyMap).getBytes());
+        return jsonObject;
     }
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
-    public String login(String name,String pwd,boolean rememberMe,HttpSession session) throws Exception {
+    public String login(String name,String pwd,boolean rememberMe) throws Exception {
         UcUser user = new UcUser();
         user.setName(name);
+        pwd = Rsa.unEncrypt(Rsa.getPrivateKey(keyMap),pwd);
         List<UcUser> userResult = ucUserBlServie.findUcUsers(user);
         if (userResult.size() <= 0 || !userResult.get(0).getPassword().equals(Rsa.unEncrypt(Rsa.getPrivateKey(keyMap),pwd))) {
             return "账号或者密码错误";
         }
         return "登陆成功！";
+    }
+
+    @RequestMapping(value = "/user",method = RequestMethod.POST)
+    public UcUser addUser(@RequestBody UcUser ucUser) throws Exception {
+        return ucUser;
     }
 }

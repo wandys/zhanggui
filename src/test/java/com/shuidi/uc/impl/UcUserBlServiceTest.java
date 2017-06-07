@@ -3,9 +3,14 @@ package com.shuidi.uc.impl;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.shuidi.uc.service.bl.UcUserBlServie;
 import com.shuidi.uc.service.dal.entity.UcUser;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.File;
 
 /**
  * Created by wandy on 2017-05-23.
@@ -27,6 +32,7 @@ public class UcUserBlServiceTest extends ServiceBaseTest {
 
     @Test
     public void saveUcUser() throws Exception {
+
     }
 
     @Test

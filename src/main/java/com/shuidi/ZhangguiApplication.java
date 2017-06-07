@@ -22,7 +22,7 @@ public class ZhangguiApplication {
 		FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
 
 		FastJsonConfig fastJsonConfig = new FastJsonConfig();
-		fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+		fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat,SerializerFeature.DisableCheckSpecialChar);
 		fastConverter.setFastJsonConfig(fastJsonConfig);
 
 		return new HttpMessageConverters(fastConverter);
