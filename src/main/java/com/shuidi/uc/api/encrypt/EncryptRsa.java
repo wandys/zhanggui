@@ -22,7 +22,7 @@ import java.util.Map;
  * Create Time 2017-05-30.
  * Change Time 2017-05-30 22:38.
  */
-public class Rsa {
+public class EncryptRsa {
     public static final String KEY_ALGORITHM = "RSA";
     //public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
     private static final String PUBLIC_KEY = "RSAPublicKey";

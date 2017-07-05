@@ -15,10 +15,10 @@ public class UcUser implements Serializable {
     private Long id;
     //用户名
     private String name;
+    //状态
+    private String status;
     //密码
     private String password;
-    //注册时间
-    private Date regTime;
     //创建时间
     private Date createTime;
     //更新时间
@@ -50,14 +50,6 @@ public class UcUser implements Serializable {
         this.password = password;
     }
 
-    public Date getRegTime() {
-        return regTime;
-    }
-
-    public void setRegTime(Date regTime) {
-        this.regTime = regTime;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -81,4 +73,5 @@ public class UcUser implements Serializable {
     public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
+
 }

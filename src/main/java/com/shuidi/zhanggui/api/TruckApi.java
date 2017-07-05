@@ -1,3 +1,4 @@
+/*
 package com.shuidi.zhanggui.api;
 
 import com.shuidi.zhanggui.api.resource.TruckBaseResource;
@@ -30,9 +31,11 @@ import java.util.Arrays;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+*/
 /**
  * Created by wandy on 2017-05-08.
- */
+ *//*
+
 @RestController
 @RequestMapping(value = "/truck")
 @ExposesResourceFor(TruckBase.class)
@@ -122,9 +125,11 @@ public class TruckApi {
     }
 
 
-    /**
+    */
+/**
      * 中值滤波
-     */
+     *//*
+
     public static void medianFiltering(BufferedImage img) {
         int w = img.getWidth();
         int h = img.getHeight();
@@ -133,13 +138,15 @@ public class TruckApi {
         int newpix[] = medianFiltering(pix, w, h);
         img.setRGB(0, 0, w, h, newpix, 0, w);
     }
-    /**
+    */
+/**
      * 中值滤波
      * @param pix 像素矩阵数组
      * @param w 矩阵的宽
      * @param h 矩阵的高
      * @return 处理后的数组
-     */
+     *//*
+
     public static int[] medianFiltering(int pix[], int w, int h) {
         int newpix[] = new int[w*h];
         int[] temp = new int[9];
@@ -172,9 +179,11 @@ public class TruckApi {
     }
 
 
-    /**
+    */
+/**
      * 对称近邻均值滤波
-     */
+     *//*
+
     public static void snnFiltering(BufferedImage img) {
         int w = img.getWidth();
         int h = img.getHeight();
@@ -183,13 +192,15 @@ public class TruckApi {
         int newpix[] = medianFiltering(pix, w, h);
         img.setRGB(0, 0, w, h, newpix, 0, w);
     }
-    /**
+    */
+/**
      * 对称近邻均值滤波
      * @param pix 像素矩阵数组
      * @param w 矩阵的宽
      * @param h 矩阵的高
      * @return 处理后的数组
-     */
+     *//*
+
     public static int[] snnFiltering(int pix[], int w, int h) {
         int newpix[] = new int[w*h];
         int n = 9;
@@ -228,9 +239,11 @@ public class TruckApi {
         return newpix;
     }
 
-    /**
+    */
+/**
      * 均值滤波
-     */
+     *//*
+
     public static void avrFiltering(BufferedImage img) {
         int w = img.getWidth();
         int h = img.getHeight();
@@ -239,13 +252,15 @@ public class TruckApi {
         int newpix[] = medianFiltering(pix, w, h);
         img.setRGB(0, 0, w, h, newpix, 0, w);
     }
-    /**
+    */
+/**
      * 均值滤波
      * @param pix 像素矩阵数组
      * @param w 矩阵的宽
      * @param h 矩阵的高
      * @return 处理后的数组
-     */
+     *//*
+
     public static int[] avrFiltering(int pix[], int w, int h) {
         int newpix[] = new int[w*h];
         ColorModel cm = ColorModel.getRGBdefault();
@@ -271,3 +286,4 @@ public class TruckApi {
 
 
 }
+*/
