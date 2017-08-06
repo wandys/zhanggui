@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.service.dal.mappers;
 
 import com.shuidi.zhanggui.service.dal.entity.Commodity;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * Describe :继承自基础的mapper信息.
@@ -11,6 +12,7 @@ import com.shuidi.zhanggui.service.dal.entity.Commodity;
  * Create Time 2017-07-31.
  * Change Time 2017-07-31 19:55.
  */
+@Mapper
 public interface CommodityMapper extends BaseMapper<Commodity> {
 
 }

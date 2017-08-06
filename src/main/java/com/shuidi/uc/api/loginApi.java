@@ -70,7 +70,7 @@ public class loginApi {
     return jsonObject;
   }
 
-  @RequestMapping(value = "/", method = RequestMethod.POST)
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   public String login(String name, String pwd, boolean rememberMe,String keySign) throws Exception {
     //从缓存中获取对应的privilateKey
     ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();

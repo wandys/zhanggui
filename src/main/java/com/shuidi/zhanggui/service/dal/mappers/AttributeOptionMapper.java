@@ -1,10 +1,12 @@
 package com.shuidi.zhanggui.service.dal.mappers;
 
 import com.shuidi.zhanggui.service.dal.entity.AttributeOption;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * Created by wandy on 2017-07-31.
  */
+@Mapper
 public interface AttributeOptionMapper extends BaseMapper<AttributeOption> {
 
 }

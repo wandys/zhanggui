@@ -27,11 +27,11 @@
         <package name="com.shuidi.uc.service.dal.entity"/>
         <package name="com.shuidi.zhanggui.service.dal.entity"/>
     </typeAliases>
-    <mappers>
-        <!--<mapper resource="com/wandy/mapper/HaoqiwangTruckRelationMapper.xml"/>
+    <!--<mappers>
+        &lt;!&ndash;<mapper resource="com/wandy/mapper/HaoqiwangTruckRelationMapper.xml"/>
         <mapper resource="com/wandy/mapper/TruckBaseMapper.xml"/>
-        <mapper resource="com/wandy/mapper/YhTruckInfoMapper.xml"/>-->
+        <mapper resource="com/wandy/mapper/YhTruckInfoMapper.xml"/>&ndash;&gt;
         <package name="com.shuidi.uc.service.dal.mappers"/>
         <package name="com.shuidi.zhanggui.service.dal.mappers"/>
-    </mappers>
+    </mappers>-->
 </configuration>
