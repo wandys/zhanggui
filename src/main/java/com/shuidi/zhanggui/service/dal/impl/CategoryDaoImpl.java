@@ -25,17 +25,17 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public List<Category> findList(Map params) {
-        return categoryMapper.findList(params);
+    public List<Category> findCategoryList(Map params) {
+        return categoryMapper.findCategoryList(params);
     }
 
     @Override
-    public int insert(Category category) {
-        return categoryMapper.insert(category);
+    public int insertCategory(Category category) {
+        return categoryMapper.insertCategory(category);
     }
 
     @Override
-    public int update(Category category) {
-        return categoryMapper.update(category);
+    public int updateCategory(Category category) {
+        return categoryMapper.updateCategory(category);
     }
 }

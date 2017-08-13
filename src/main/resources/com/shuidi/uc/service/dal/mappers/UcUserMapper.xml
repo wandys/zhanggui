@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.shuidi.uc.service.dal.mappers.UcUserMapper">
+    <resultMap id="ucUserMap" type="com.shuidi.uc.service.dal.entity.UcUser">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="status" property="status"/>
+        <result column="password" property="password"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="createTime" property="createTime"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+    </resultMap>
 
     <sql id="selectParam">
         id,
@@ -21,7 +31,7 @@
             WHERE   id = #{id}
     </select>
 
-    <select id="findUcUsers" parameterType="com.shuidi.uc.service.dal.entity.UcUser" resultType="java.util.List">
+    <select id="findUcUsers" parameterType="com.shuidi.uc.service.dal.entity.UcUser" resultMap="ucUserMap">
         SELECT
         <include refid="selectParam"></include>
         FROM   uc_user
@@ -30,7 +40,7 @@
                 AND id = #{id}
             </if>
             <if test="name!=null">
-                AND name = #{name}
+                AND name LIKE concat('%',#{name},'%')
             </if>
             <if test="phone!=null">
                 AND phone = #{phone}

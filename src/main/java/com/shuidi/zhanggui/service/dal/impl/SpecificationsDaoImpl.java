@@ -26,16 +26,16 @@ public class SpecificationsDaoImpl implements SpecificationsDao {
 
     @Override
     public List<Specifications> findList(Map params) {
-        return specificationsMapper.findList(params);
+        return specificationsMapper.findSpecificationsList(params);
     }
 
     @Override
-    public int insert(Specifications specifications) {
-        return specificationsMapper.insert(specifications);
+    public int insertSpecifications(Specifications specifications) {
+        return specificationsMapper.insertSpecifications(specifications);
     }
 
     @Override
-    public int update(Specifications specifications) {
-        return specificationsMapper.update(specifications);
+    public int updateSpecifications(Specifications specifications) {
+        return specificationsMapper.updateSpecifications(specifications);
     }
 }

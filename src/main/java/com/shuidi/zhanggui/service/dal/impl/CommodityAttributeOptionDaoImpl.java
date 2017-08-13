@@ -30,12 +30,12 @@ public class CommodityAttributeOptionDaoImpl implements CommodityAttributeOption
     }
 
     @Override
-    public int insert(CommmodityAttributeOption commmodityAttributeOption) {
-        return commodityAttributeOptionMapper.insert(commmodityAttributeOption);
+    public int insertCommmodityAttributeOption(CommmodityAttributeOption commmodityAttributeOption) {
+        return commodityAttributeOptionMapper.insertCommmodityAttributeOption(commmodityAttributeOption);
     }
 
     @Override
-    public int update(CommmodityAttributeOption commmodityAttributeOption) {
-        return commodityAttributeOptionMapper.update(commmodityAttributeOption);
+    public int updateCommmodityAttributeOption(CommmodityAttributeOption commmodityAttributeOption) {
+        return commodityAttributeOptionMapper.updateCommmodityAttributeOption(commmodityAttributeOption);
     }
 }

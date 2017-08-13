@@ -30,12 +30,12 @@ public class CommoditySepcificationOptionDaoImpl implements CommoditySepcificati
     }
 
     @Override
-    public int insert(CommonditySepcificationOption commonditySepcificationOption) {
-        return commoditySepcificationOptionMapper.insert(commonditySepcificationOption);
+    public int insertCommonditySepcificationOption(CommonditySepcificationOption commonditySepcificationOption) {
+        return commoditySepcificationOptionMapper.insertCommonditySepcificationOption(commonditySepcificationOption);
     }
 
     @Override
-    public int update(CommonditySepcificationOption commonditySepcificationOption) {
-        return commoditySepcificationOptionMapper.update(commonditySepcificationOption);
+    public int updateCommonditySepcificationOption(CommonditySepcificationOption commonditySepcificationOption) {
+        return commoditySepcificationOptionMapper.updateCommonditySepcificationOption(commonditySepcificationOption);
     }
 }

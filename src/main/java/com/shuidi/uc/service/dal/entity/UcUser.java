@@ -17,6 +17,8 @@ public class UcUser implements Serializable {
     private String name;
     //状态
     private String status;
+    //状态
+    private String phone;
     //密码
     private String password;
     //创建时间
@@ -74,4 +76,19 @@ public class UcUser implements Serializable {
         this.lastLoginTime = lastLoginTime;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

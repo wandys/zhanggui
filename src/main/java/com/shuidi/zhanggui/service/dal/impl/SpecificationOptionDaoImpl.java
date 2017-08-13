@@ -30,12 +30,12 @@ public class SpecificationOptionDaoImpl implements SpecificationOptionDao {
     }
 
     @Override
-    public int insert(SpecificationOption specificationOption) {
-        return specificationOptionMapper.insert(specificationOption);
+    public int insertSpecificationOption(SpecificationOption specificationOption) {
+        return specificationOptionMapper.insertSpecificationOption(specificationOption);
     }
 
     @Override
-    public int update(SpecificationOption specificationOption) {
-        return specificationOptionMapper.update(specificationOption);
+    public int updateSpecificationOption(SpecificationOption specificationOption) {
+        return specificationOptionMapper.updateSpecificationOption(specificationOption);
     }
 }

@@ -28,7 +28,7 @@ public class Brand implements Serializable {
     /**
      * 品牌名称.
      */
-    private String branName;
+    private String brandName;
 
     /**
      * 品牌相关描述.
@@ -51,12 +51,12 @@ public class Brand implements Serializable {
         this.brandNo = brandNo;
     }
 
-    public String getBranName() {
-        return branName;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setBranName(String branName) {
-        this.branName = branName;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     public String getDescription() {

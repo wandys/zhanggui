@@ -20,13 +20,23 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+
     <typeAliases>
         <package name="com.shuidi.uc.service.dal.entity"/>
         <package name="com.shuidi.zhanggui.service.dal.entity"/>
     </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor">
+            <!-- 主键自增回写方法,默认值MYSQL,详细说明请看文档 -->
+            <property name="IDENTITY" value="MYSQL"/>
+            <!-- 通用Mapper接口，多个通用接口用逗号隔开 -->
+            <property name="mappers" value="com.github.abel533.mapper.Mapper"/>
+        </plugin>
+    </plugins>
     <!--<mappers>
         &lt;!&ndash;<mapper resource="com/wandy/mapper/HaoqiwangTruckRelationMapper.xml"/>
         <mapper resource="com/wandy/mapper/TruckBaseMapper.xml"/>

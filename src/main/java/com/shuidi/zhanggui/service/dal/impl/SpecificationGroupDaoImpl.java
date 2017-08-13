@@ -26,16 +26,16 @@ public class SpecificationGroupDaoImpl implements SpecificationGroupDao {
 
     @Override
     public List<SpecificationGroup> findList(Map params) {
-        return specificationGroupMapper.findList(params);
+        return specificationGroupMapper.findSpecificationGroupList(params);
     }
 
     @Override
-    public int insert(SpecificationGroup specificationGroup) {
-        return specificationGroupMapper.insert(specificationGroup);
+    public int insertSpecificationGroup(SpecificationGroup specificationGroup) {
+        return specificationGroupMapper.insertSpecificationGroup(specificationGroup);
     }
 
     @Override
-    public int update(SpecificationGroup specificationGroup) {
-        return specificationGroupMapper.update(specificationGroup);
+    public int updateSpecificationGroup(SpecificationGroup specificationGroup) {
+        return specificationGroupMapper.updateSpecificationGroup(specificationGroup);
     }
 }

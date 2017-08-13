@@ -2,24 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.shuidi.zhanggui.service.dal.mappers.TruckBaseMapper">
-    <resultMap id="applyFormResultMap" type="com.enn.zhwl.tms.dal.entity.ApplyForm">
+    <resultMap id="brandResult" type="com.shuidi.zhanggui.service.dal.entity.Brand">
         <id column="id" property="id"/>
-        <result column="company_name" property="companyName"/>
-        <result column="applyer_name" property="applyerName"/>
-        <result column="applyer_phone" property="applyerPhone"/>
-        <result column="create_time" property="createTime"/>
-        <result column="update_time" property="updateTime"/>
-        <result column="apply_type" property="applyType"/>
-        <result column="email" property="email"/>
-        <result column="status" property="status"/>
-        <result column="source" property="source"/>
-        <result column="note" property="note"/>
+        <result column="brand_no" property="brandNo"/>
+        <result column="brand_name" property="brandName"/>
+        <result column="description" property="description"/>
     </resultMap>
+    <sql id="selectParam">
+        id,
+        brand_no,
+        brand_name,
+        description
+    </sql>
 
-
-    <select id="getTruck" resultType="com.shuidi.zhanggui.service.dal.entity.TruckBase">
-            SELECT *
-              FROM   TRUCK_BASE
-             WHERE   id = #{id}
+    <select id="getById" resultType="com.shuidi.zhanggui.service.dal.entity.Brand">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+        brand
+        WHERE
+          id = #{id}
     </select>
+    <select id="findList" parameterType="java.util.Map" resultMap="brandResult">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM   brand
+        WHERE
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="brandName!=null">
+                AND brand_name LIKE concat('%',#{brandName},'%')
+            </if>
+            <if test="branNo!=null">
+                AND brand_no = #{branNo}
+            </if>
+    </select>
+    <insert id="insert" parameterType="com.shuidi.zhanggui.service.dal.entity.Brand">
+        INSERT INTO
+            brand(brand_no,
+                  brand_name,
+                  description)
+        VALUES (
+          #{brandNo},
+          #{brandName},
+          #{description}
+        );
+    </insert>
+    <update id="update" parameterType="com.shuidi.zhanggui.service.dal.entity.Brand">
+        UPDATE brand
+        SET
+          brand_name = #{brandName},
+          description=#{description}
+        WHERE   id = #{id}
+    </update>
 </mapper>

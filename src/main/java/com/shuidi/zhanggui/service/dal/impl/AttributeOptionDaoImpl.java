@@ -25,17 +25,17 @@ public class AttributeOptionDaoImpl implements AttributeOptionDao {
     }
 
     @Override
-    public List<AttributeOption> findList(Map params) {
+    public List<AttributeOption> findAttributeOptionList(Map params) {
         return attributeOptionMapper.findList(params);
     }
 
     @Override
-    public int insert(AttributeOption attributeOption) {
-        return attributeOptionMapper.insert(attributeOption);
+    public int insertAttributeOption(AttributeOption attributeOption) {
+        return attributeOptionMapper.insertAttributeOption(attributeOption);
     }
 
     @Override
-    public int update(AttributeOption attributeOption) {
-        return attributeOptionMapper.update(attributeOption);
+    public int updateAttributeOption(AttributeOption attributeOption) {
+        return attributeOptionMapper.updateAttributeOption(attributeOption);
     }
 }

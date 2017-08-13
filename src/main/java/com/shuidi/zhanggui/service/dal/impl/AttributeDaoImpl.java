@@ -26,17 +26,17 @@ public class AttributeDaoImpl implements AttributeDao {
     }
 
     @Override
-    public List<Attribute> findList(Map params) {
-        return attributeMapper.findList(params);
+    public List<Attribute> findAttributeList(Map params) {
+        return attributeMapper.findAttributeList(params);
     }
 
     @Override
-    public int insert(Attribute attribute) {
-        return attributeMapper.insert(attribute);
+    public int insertAttribute(Attribute attribute) {
+        return attributeMapper.insertAttribute(attribute);
     }
 
     @Override
-    public int update(Attribute attribute) {
-        return attributeMapper.update(attribute);
+    public int updateAttribute(Attribute attribute) {
+        return attributeMapper.updateAttribute(attribute);
     }
 }

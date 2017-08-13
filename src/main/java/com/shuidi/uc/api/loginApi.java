@@ -71,12 +71,15 @@ public class loginApi {
   }
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String login(String name, String pwd, boolean rememberMe,String keySign) throws Exception {
+  public String login(String name, String pwd, boolean rememberMe, String keySign) throws Exception {
     //从缓存中获取对应的privilateKey
     ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
     String privilateKey = valueOperations.get(LOGINREDISKEY + keySign);
     if (StringUtils.isBlank(privilateKey)) {
       return "key过期，请重新获取key";
+    }
+    if (StringUtils.isBlank(name) || StringUtils.isBlank(pwd)) {
+      return "账号或者密码不正确";
     }
 
     UcUser user = new UcUser();
@@ -91,6 +94,7 @@ public class loginApi {
 
   @RequestMapping(value = "/user", method = RequestMethod.POST)
   public UcUser addUser(@RequestBody UcUser ucUser) throws Exception {
+    ucUserBlServie.saveUcUser(ucUser);
     return ucUser;
   }
 }

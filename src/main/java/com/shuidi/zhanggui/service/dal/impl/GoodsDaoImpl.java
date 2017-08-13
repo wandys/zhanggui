@@ -25,17 +25,17 @@ public class GoodsDaoImpl implements GoodsDao {
     }
 
     @Override
-    public List<Goods> findList(Map params) {
+    public List<Goods> findGoodsList(Map params) {
         return goodsMapper.findList(params);
     }
 
     @Override
-    public int insert(Goods goods) {
+    public int insertGoods(Goods goods) {
         return goodsMapper.insert(goods);
     }
 
     @Override
-    public int update(Goods goods) {
+    public int updateGoods(Goods goods) {
         return goodsMapper.update(goods);
     }
 }

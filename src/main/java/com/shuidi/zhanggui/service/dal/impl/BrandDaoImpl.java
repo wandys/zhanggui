@@ -25,17 +25,18 @@ public class BrandDaoImpl implements BrandDao {
     }
 
     @Override
-    public List<Brand> findList(Map params) {
-        return brandMapper.findList(params);
+    public List<Brand> findBrandList(Map params) {
+        return brandMapper.findBrandList(params);
     }
 
     @Override
-    public int insert(Brand brand) {
-        return brandMapper.insert(brand);
+    public int insertBrand(Brand brand) {
+        return brandMapper.insertBrand(brand);
     }
 
     @Override
-    public int update(Brand brand) {
-        return brandMapper.update(brand);
+    public int updateBrand(Brand brand) {
+        return brandMapper.updateBrand(brand);
     }
+
 }
