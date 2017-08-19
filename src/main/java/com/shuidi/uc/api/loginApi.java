@@ -1,16 +1,16 @@
 package com.shuidi.uc.api;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shuidi.uc.api.encrypt.EncryptBase64;
 import com.shuidi.uc.api.encrypt.EncryptMD5;
 import com.shuidi.uc.api.encrypt.EncryptRsa;
+import com.shuidi.uc.api.shiro.ShiroFilterConfig;
 import com.shuidi.uc.service.bl.UcUserBlServie;
 import com.shuidi.uc.service.dal.entity.UcUser;
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -19,13 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Describe :
@@ -40,7 +39,7 @@ import java.util.regex.Pattern;
 @RequestMapping("login")
 public class loginApi {
 
-  private static final Logger log = Logger.getLogger(loginApi.class);
+  private static final Logger log = LoggerFactory.getLogger(loginApi.class);
 
   @Autowired
   private UcUserBlServie ucUserBlServie;
@@ -85,6 +84,9 @@ public class loginApi {
     if (StringUtils.isBlank(privilateKey)) {
       return "key过期，请重新获取key";
     }*/
+    ShiroFilterConfig.filter.entrySet().stream().forEach(entry ->{
+      log.info("shiro filter key:{},value:{}",new Object[]{entry.getKey(),entry.getValue()});
+    });
     Subject currentUser = SecurityUtils.getSubject();
 
     try {

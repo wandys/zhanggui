@@ -1,5 +1,6 @@
 package com.shuidi.config;
 
+import com.shuidi.uc.api.shiro.ShiroFilterConfig;
 import com.shuidi.uc.api.shiro.ShiroRealm;
 import com.shuidi.uc.api.shiro.ShuidiCredentialsMatcher;
 import com.shuidi.uc.api.shiro.redis.RedisCacheManager;
@@ -60,7 +61,7 @@ public class ShiroConfiguration {
     shiroFilterFactoryBean.setSecurityManager(securityManager);
 
     //拦截器.
-    Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+    /*Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
     //配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
     filterChainDefinitionMap.put("/logout", "logout");
@@ -73,15 +74,23 @@ public class ShiroConfiguration {
     //配置需要登录才能访问链接
     //filterChainDefinitionMap.put("/logout/key", "user");
     //需要授权地址配置
-    filterChainDefinitionMap.put("/**", "authc");
+    filterChainDefinitionMap.put("*//**", "authc");
 
     //如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
     shiroFilterFactoryBean.setLoginUrl("/login");
     // 登录成功后要跳转的链接
     shiroFilterFactoryBean.setSuccessUrl("/index");
     //未授权界面;
-    shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+    shiroFilterFactoryBean.setUnauthorizedUrl("/403");*/
     // shiroFilterFactoryBean.setUnauthorizedUrl("/login/key");
+    //如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
+    shiroFilterFactoryBean.setLoginUrl(ShiroFilterConfig.login);
+    // 登录成功后要跳转的链接
+    shiroFilterFactoryBean.setSuccessUrl(ShiroFilterConfig.loginSuccess);
+    //<!-- 过滤链定义，从上向下顺序执行，将/×*放在最为下边,否则配置的不需要权限的验证链接则不会生效 -->
+    //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
+    //配置这个作为不需要授权访问的地址做测试
+    Map<String, String> filterChainDefinitionMap = ShiroFilterConfig.filter;
 
     shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     return shiroFilterFactoryBean;
