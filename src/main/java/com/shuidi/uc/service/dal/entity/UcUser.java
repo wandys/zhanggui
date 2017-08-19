@@ -28,6 +28,10 @@ public class UcUser implements Serializable {
     //最后登录时间
     private Date lastLoginTime;
 
+    private String salt;
+
+    private String shaKey;
+
     public Long getId() {
         return id;
     }
@@ -90,5 +94,21 @@ public class UcUser implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getShaKey() {
+        return shaKey;
+    }
+
+    public void setShaKey(String shaKey) {
+        this.shaKey = shaKey;
     }
 }

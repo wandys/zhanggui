@@ -39,7 +39,7 @@ dependencies {
 	compile('com.alibaba:fastjson:1.2.32')
 	compile('commons-codec:commons-codec:1.10')
 	compile('commons-lang:commons-lang:2.6')
-	compile('com.github.abel533:mapper:2.3.4')
+	compile('org.apache.shiro:shiro-spring:1.2.2')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
