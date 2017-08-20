@@ -3,6 +3,7 @@ package com.shuidi.uc.api;
 import com.alibaba.fastjson.JSONObject;
 import com.shuidi.uc.api.encrypt.EncryptMD5;
 import com.shuidi.uc.api.encrypt.EncryptRsa;
+import com.shuidi.uc.api.shiro.LoginTools;
 import com.shuidi.uc.service.bl.UcUserBlServie;
 import com.shuidi.uc.service.dal.entity.UcUser;
 import org.apache.shiro.SecurityUtils;
@@ -77,9 +78,7 @@ public class logoutApi {
 
     JSONObject result = new JSONObject();
 
-    Subject currentUser = SecurityUtils.getSubject();
-    log.info("is login:{}",new Object[]{currentUser.isAuthenticated()});
-    currentUser.logout();
+    LoginTools.logout();
 
     result.put("session",request.getSession().getId());
     result.put("status","success");

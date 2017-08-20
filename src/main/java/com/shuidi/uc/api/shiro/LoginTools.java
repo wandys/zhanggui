@@ -2,6 +2,7 @@ package com.shuidi.uc.api.shiro;
 
 import com.shuidi.uc.service.dal.entity.UcUser;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
@@ -11,6 +12,17 @@ import org.apache.shiro.subject.Subject;
  * Created by wandy on 17-8-20.
  */
 public class LoginTools {
+
+
+  public static void login(String userName,String password,boolean rememberMe) {
+    UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+    token.setRememberMe(rememberMe);
+    SecurityUtils.getSubject().login(token);
+  }
+
+  public static void logout() {
+    SecurityUtils.getSubject().logout();
+  }
 
   /**
    * 判断当前用户是否登录.

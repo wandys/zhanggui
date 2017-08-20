@@ -98,10 +98,7 @@ public class loginApi {
 
 
     try {
-      UsernamePasswordToken token = new UsernamePasswordToken(name, pwd);
-      token.setRememberMe(true);
-      SecurityUtils.getSubject().login(token);
-
+     LoginTools.login(name,pwd,true);
     } catch (Exception e) {
       result.put("status","failed");
       result.put("desc","账号或者密码错误");
