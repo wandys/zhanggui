@@ -3,6 +3,7 @@ package com.shuidi.uc.api;
 import com.alibaba.fastjson.JSONObject;
 import com.shuidi.uc.api.encrypt.EncryptMD5;
 import com.shuidi.uc.api.encrypt.EncryptRsa;
+import com.shuidi.uc.api.shiro.LoginTools;
 import com.shuidi.uc.api.shiro.ShiroFilterConfig;
 import com.shuidi.uc.service.bl.UcUserBlServie;
 import com.shuidi.uc.service.dal.entity.UcUser;
@@ -87,12 +88,20 @@ public class loginApi {
     ShiroFilterConfig.filter.entrySet().stream().forEach(entry ->{
       log.info("shiro filter key:{},value:{}",new Object[]{entry.getKey(),entry.getValue()});
     });
-    Subject currentUser = SecurityUtils.getSubject();
+    //Subject currentUser = SecurityUtils.getSubject();
+    if (LoginTools.isLogin()) {
+      result.put("session",request.getSession().getId());
+      result.put("status","success");
+      result.put("desc","您已经登录，无需再次登录！");
+      return result;
+    }
+
 
     try {
       UsernamePasswordToken token = new UsernamePasswordToken(name, pwd);
       token.setRememberMe(true);
-      currentUser.login(token);
+      SecurityUtils.getSubject().login(token);
+
     } catch (Exception e) {
       result.put("status","failed");
       result.put("desc","账号或者密码错误");

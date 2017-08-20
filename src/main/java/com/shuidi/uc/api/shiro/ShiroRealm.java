@@ -4,6 +4,7 @@ import com.shuidi.uc.api.UcUserApi;
 import com.shuidi.uc.api.encrypt.EncryptBase64;
 import com.shuidi.uc.service.bl.UcUserBlServie;
 import com.shuidi.uc.service.dal.entity.UcUser;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -101,6 +102,8 @@ public class ShiroRealm extends AuthorizingRealm {
       throw new NullPointerException("find null user,name:" + username);
     }
     UcUser ucUser = users.get(0);
+    //将user信息放到session中
+    SecurityUtils.getSubject().getSession().setAttribute("userInfo",ucUser);
 
        /*
         * 获取权限信息:这里没有进行实现，
