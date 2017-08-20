@@ -73,10 +73,12 @@ public class loginApi {
     return jsonObject;
   }
 
-  @RequestMapping(value = {"/",""}, method = RequestMethod.GET,produces = "application/json")
-  public Object login(String phone, String pwd, boolean rememberMe, String keySign,HttpServletRequest request) throws Exception {
+  @RequestMapping(value = {"/",""}, method = RequestMethod.POST,produces = "application/json")
+  public Object login(@RequestBody JSONObject loginData,HttpServletRequest request) throws Exception {
 
-    JSONObject result = new JSONObject();
+    String phone = loginData.getString("phone");
+    String pwd = loginData.getString("password");
+    //boolean rememberMe = loginData.getBoolean("rememberMe");
     //从缓存中获取对应的privilateKey
    /* ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
     String privilateKey = valueOperations.get(LOGINREDISKEY + keySign);
@@ -86,6 +88,7 @@ public class loginApi {
     ShiroFilterConfig.filters.entrySet().stream().forEach(entry ->{
       log.info("shiro filters key:{},value:{}",new Object[]{entry.getKey(),entry.getValue()});
     });*/
+    JSONObject result = new JSONObject();
     if (LoginTools.isLogin()) {
       result.put("session",request.getSession().getId());
       result.put("status","success");
