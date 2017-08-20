@@ -7,9 +7,7 @@ import com.shuidi.uc.api.shiro.LoginTools;
 import com.shuidi.uc.api.shiro.ShiroFilterConfig;
 import com.shuidi.uc.service.bl.UcUserBlServie;
 import com.shuidi.uc.service.dal.entity.UcUser;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +74,7 @@ public class loginApi {
   }
 
   @RequestMapping(value = {"/",""}, method = RequestMethod.GET,produces = "application/json")
-  public Object login(String name, String pwd, boolean rememberMe, String keySign,HttpServletRequest request) throws Exception {
+  public Object login(String phone, String pwd, boolean rememberMe, String keySign,HttpServletRequest request) throws Exception {
 
     JSONObject result = new JSONObject();
     //从缓存中获取对应的privilateKey
@@ -84,21 +82,18 @@ public class loginApi {
     String privilateKey = valueOperations.get(LOGINREDISKEY + keySign);
     if (StringUtils.isBlank(privilateKey)) {
       return "key过期，请重新获取key";
-    }*/
-    ShiroFilterConfig.filter.entrySet().stream().forEach(entry ->{
-      log.info("shiro filter key:{},value:{}",new Object[]{entry.getKey(),entry.getValue()});
-    });
-    //Subject currentUser = SecurityUtils.getSubject();
+    }
+    ShiroFilterConfig.filters.entrySet().stream().forEach(entry ->{
+      log.info("shiro filters key:{},value:{}",new Object[]{entry.getKey(),entry.getValue()});
+    });*/
     if (LoginTools.isLogin()) {
       result.put("session",request.getSession().getId());
       result.put("status","success");
       result.put("desc","您已经登录，无需再次登录！");
       return result;
     }
-
-
     try {
-     LoginTools.login(name,pwd,true);
+     LoginTools.login(phone,pwd,true);
     } catch (Exception e) {
       result.put("status","failed");
       result.put("desc","账号或者密码错误");

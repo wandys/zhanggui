@@ -42,7 +42,7 @@ public class ShiroRealm extends AuthorizingRealm {
     System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
 
     SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-    UcUser userInfo  = (UcUser)principals.getPrimaryPrincipal();
+    UcUser userInfo = (UcUser) principals.getPrimaryPrincipal();
 
     //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
     //UserInfo userInfo = userInfoService.findByUsername(username)
@@ -91,19 +91,19 @@ public class ShiroRealm extends AuthorizingRealm {
   protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
     //获取用户的输入的账号.
-    String username = (String) token.getPrincipal();
-    System.out.println("认证登录：name:"+username+",pwd:");
+    String phone = (String) token.getPrincipal();
+    System.out.println("认证登录2：name:" + phone);
     UcUser user = new UcUser();
-    user.setName(username);
+    user.setPhone(phone);
     //通过username从数据库中查找 User对象，如果找到，没找到.
     //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
     List<UcUser> users = ucUserBlServie.findUcUsers(user);
     if (users == null || users.size() <= 0) {
-      throw new NullPointerException("find null user,name:" + username);
+      throw new NullPointerException("find null user,name:" + phone);
     }
     UcUser ucUser = users.get(0);
     //将user信息放到session中
-    SecurityUtils.getSubject().getSession().setAttribute("userInfo",ucUser);
+    SecurityUtils.getSubject().getSession().setAttribute("userInfo", ucUser);
 
        /*
         * 获取权限信息:这里没有进行实现，

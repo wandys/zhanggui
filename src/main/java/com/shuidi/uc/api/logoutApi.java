@@ -77,6 +77,8 @@ public class logoutApi {
   public Object login(String name, String pwd, boolean rememberMe, String keySign,HttpServletRequest request) throws Exception {
 
     JSONObject result = new JSONObject();
+//    log.debug("准备退出的用户名是1：{}",new Object[]{(String)SecurityUtils.getSubject().getPrincipal()});
+    log.debug("准备退出的用户名是2：{}",new Object[]{((UcUser)SecurityUtils.getSubject().getSession().getAttribute("userInfo")).getName()});
 
     LoginTools.logout();
 

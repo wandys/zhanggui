@@ -1,7 +1,9 @@
 package com.shuidi.uc.api.shiro;
 
 import com.shuidi.uc.service.dal.entity.UcUser;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -15,6 +17,10 @@ public class LoginTools {
 
 
   public static void login(String userName,String password,boolean rememberMe) {
+    if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
+      throw new AccountException("账号或者密码错误");
+    }
+
     UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
     token.setRememberMe(rememberMe);
     SecurityUtils.getSubject().login(token);

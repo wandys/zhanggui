@@ -34,7 +34,7 @@ public class ShuidiCredentialsMatcher implements CredentialsMatcher {
     PrincipalCollection userNameCollection = simpleAuthenticationInfo.getPrincipals();
 
     UcUser userNameInfo = (UcUser) userNameCollection.getPrimaryPrincipal();
-    log.debug("oriName:{},oriPwd:{},infoName:{},infoPwd:{}", new Object[]{user, pwd, userNameInfo.getName(),pwdInfo});
+    log.debug("oriName:{},oriPwd:{},infoName:{},infoPwd:{}", new Object[]{user, pwd, userNameInfo.getPhone(),pwdInfo});
     if (pwd.equals(pwdInfo)) {
       return true;
     }

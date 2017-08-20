@@ -19,6 +19,7 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class ShiroConfiguration {
   private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
 
   //@Autowired
-  private RedisSessionDAO redisSessionDAO;
+  //private ShiroFilterConfig shiroFilterConfig;
 
   /**
    * ShiroFilterFactoryBean 处理拦截资源文件问题。
@@ -53,7 +54,8 @@ public class ShiroConfiguration {
 
 
   @Bean
-  public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
+  @Order(2)
+  public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager,ShiroFilterConfig shiroFilterConfig) {
     logger.debug("ShiroConfiguration.shirFilter()");
     ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 
@@ -90,7 +92,7 @@ public class ShiroConfiguration {
     //<!-- 过滤链定义，从上向下顺序执行，将/×*放在最为下边,否则配置的不需要权限的验证链接则不会生效 -->
     //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
     //配置这个作为不需要授权访问的地址做测试
-    Map<String, String> filterChainDefinitionMap = ShiroFilterConfig.filter;
+    Map<String, String> filterChainDefinitionMap = shiroFilterConfig.getFilters();
 
     shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     return shiroFilterFactoryBean;

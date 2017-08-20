@@ -1,5 +1,7 @@
 package com.shuidi.uc.service.dal.entity;
 
+import com.shuidi.uc.commons.enums.Status;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,7 +18,7 @@ public class UcUser implements Serializable {
     //用户名
     private String name;
     //状态
-    private String status;
+    private Status status;
     //状态
     private String phone;
     //密码
@@ -80,11 +82,11 @@ public class UcUser implements Serializable {
         this.lastLoginTime = lastLoginTime;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

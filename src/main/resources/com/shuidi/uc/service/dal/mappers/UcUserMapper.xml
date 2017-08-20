@@ -51,10 +51,9 @@
         </where>
     </select>
 
-    <insert id="saveUcUser" keyProperty="id" parameterType="com.shuidi.uc.service.dal.entity.UcUser">
-        INNER INTO
+    <insert id="saveUcUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.shuidi.uc.service.dal.entity.UcUser">
+        INSERT INTO
         uc_user(
-        id,
         name,
         phone,
         status,
@@ -64,7 +63,6 @@
         last_login_time
         )
         VALUE (
-        #{id},
         #{name},
         #{phone},
         #{status},
