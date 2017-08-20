@@ -4,6 +4,8 @@
 
 package com.shuidi.commons;
 
+import com.shuidi.commons.enums.State;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -33,4 +35,7 @@ public class ResultSet<D, C> extends Result<List<D>, C> implements Serializable 
     this.total = total;
   }
 
+  public boolean isSuccess() {
+    return getCode() == State.SUCCESS && getData() != null && getData().size() > 0;
+  }
 }

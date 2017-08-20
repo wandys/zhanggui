@@ -4,6 +4,8 @@
 
 package com.shuidi.commons;
 
+import com.shuidi.commons.enums.State;
+
 import java.io.Serializable;
 
 /**
@@ -76,5 +78,9 @@ public class Result<D, C> implements Serializable {
    */
   public void setData(D data) {
     this.data = data;
+  }
+
+  public boolean isSuccess() {
+    return getCode() == State.SUCCESS && data != null;
   }
 }
