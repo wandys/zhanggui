@@ -1,7 +1,12 @@
 package com.shuidi.uc.api;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import com.shuidi.commons.exception.CheckedException;
-import com.shuidi.uc.api.resource.UcUserResource;
+import com.shuidi.uc.api.resource.CollectsResource;
+import com.shuidi.uc.api.resource.OnlyResource;
+import com.shuidi.uc.api.resource.SingleResource;
 import com.shuidi.uc.api.shiro.PassWordCreater;
 import com.shuidi.uc.commons.enums.Status;
 import com.shuidi.uc.commons.utils.UserCheckerUtil;
@@ -17,13 +22,14 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.config.EnableEntityLinks;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 /**
  * ucUser api  返回rest风格json
@@ -52,7 +58,7 @@ public class UcUserApi {
   public ResponseEntity getUser(@PathVariable Long id) {
     try {
       UcUser ucUser = ucUserBlServie.getUserById(id);
-      UcUserResource resource = new UcUserResource(ucUser);
+      SingleResource<UcUser> resource = new SingleResource(ucUser);
       Link selfLink = entityLinks.linkToSingleResource(UcUser.class, id);
       Link basesLink = entityLinks.linkToCollectionResource(UcUser.class).withRel("collects");
       //Link trucksLink = linkTo(methodOn(this.getClass()).findUcUsers()).withRel("aa");
@@ -69,7 +75,7 @@ public class UcUserApi {
   public ResponseEntity findUcUsers(@RequestBody UcUser user) {
     try {
       List<UcUser> ucUser = ucUserBlServie.findUcUsers(user);
-      UcUserResource resource = new UcUserResource(ucUser);
+      CollectsResource<UcUser> resource = new CollectsResource(ucUser);
       Link selfLink = entityLinks.linkToSingleResource(UcUser.class, "${id}");
       Link basesLink = entityLinks.linkToCollectionResource(UcUser.class).withRel("collects");
       Link trucksLink = linkTo(methodOn(this.getClass()).findUcUsers(user)).withRel("aa");
@@ -105,10 +111,13 @@ public class UcUserApi {
       user.setPassword(creater.getSignedPwd(creater.creatSalt()));
 
       Long userId = ucUserBlServie.saveUcUser(user);
-      UcUserResource resource = new UcUserResource();
+      //UcUserResource resource = new UcUserResource();
+      //resource.add(selfLink);
+      //使用基本resource是为了去除返回结果中 ucUsers:null 问题
+      OnlyResource onlyResource = new OnlyResource();
       Link selfLink = entityLinks.linkToSingleResource(UcUser.class, userId);
-      resource.add(selfLink);
-      return ResponseEntity.ok().body(resource);
+      onlyResource.add(selfLink);
+      return ResponseEntity.ok().body(onlyResource);
 
     } catch (Exception e) {
       log.error("", e);
@@ -120,10 +129,10 @@ public class UcUserApi {
   public ResponseEntity updateUcUsers(@RequestBody UcUser user) {
     try {
       ucUserBlServie.updateUcUser(user);
-      UcUserResource resource = new UcUserResource();
+      OnlyResource onlyResource = new OnlyResource();
       Link selfLink = entityLinks.linkToSingleResource(UcUser.class, user.getId());
-      resource.add(selfLink);
-      return ResponseEntity.ok().body(resource);
+      onlyResource.add(selfLink);
+      return ResponseEntity.ok().body(onlyResource);
 
     } catch (Exception e) {
       log.error("", e);
