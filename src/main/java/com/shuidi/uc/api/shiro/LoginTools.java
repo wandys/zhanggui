@@ -36,8 +36,8 @@ public class LoginTools {
    * @return 获取结果
    */
   public static boolean isLogin() {
-    Subject currentSubject = SecurityUtils.getSubject();
-    return currentSubject.getSession().getAttribute("userInfo") != null;
+    Object currentSubject = SecurityUtils.getSubject().getSession().getAttribute("isLogin");
+    return currentSubject != null && (boolean)currentSubject == true ;
   }
 
   /**

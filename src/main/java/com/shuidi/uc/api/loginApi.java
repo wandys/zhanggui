@@ -3,16 +3,22 @@ package com.shuidi.uc.api;
 import com.alibaba.fastjson.JSONObject;
 import com.shuidi.uc.api.encrypt.EncryptMD5;
 import com.shuidi.uc.api.encrypt.EncryptRsa;
+import com.shuidi.uc.api.resource.OnlyResource;
+import com.shuidi.uc.api.resource.SingleResource;
 import com.shuidi.uc.api.shiro.LoginTools;
-import com.shuidi.uc.api.shiro.ShiroFilterConfig;
 import com.shuidi.uc.service.bl.UcUserBlServie;
 import com.shuidi.uc.service.dal.entity.UcUser;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.hateoas.EntityLinks;
+import org.springframework.hateoas.ExposesResourceFor;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.config.EnableEntityLinks;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,15 +42,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping("login")
+@ExposesResourceFor(loginApi.class)
+@EnableEntityLinks
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class loginApi {
 
   private static final Logger log = LoggerFactory.getLogger(loginApi.class);
 
   @Autowired
-  private UcUserBlServie ucUserBlServie;
+  private RedisTemplate redisTemplate;
 
   @Autowired
-  private RedisTemplate redisTemplate;
+  private EntityLinks entityLinks;
 
   private static Map keyMap;
 
@@ -52,7 +61,7 @@ public class loginApi {
 
 
   @RequestMapping(value = "/key", method = RequestMethod.GET)
-  public Object getPrivateKey(HttpServletResponse response) throws Exception {
+  public ResponseEntity getPrivateKey(HttpServletResponse response) throws Exception {
 
     keyMap = EncryptRsa.initKey();
     log.info(EncryptRsa.getPublicKey(keyMap));
@@ -70,11 +79,15 @@ public class loginApi {
     jsonObject.put("publicKey", publicKey);
     jsonObject.put("publicKeySign", privateKeySign);
     //jsonObject.put("privateKey", valueOperations.get(LOGINREDISKEY + privateKeySign));
-    return jsonObject;
+
+    SingleResource<JSONObject> resource = new SingleResource(jsonObject);
+    Link link = entityLinks.linkToSingleResource(loginApi.class,null);
+    resource.add(link);
+    return ResponseEntity.ok(resource);
   }
 
   @RequestMapping(value = {"/",""}, method = RequestMethod.POST,produces = "application/json")
-  public Object login(@RequestBody JSONObject loginData,HttpServletRequest request) throws Exception {
+  public ResponseEntity login(@RequestBody JSONObject loginData, HttpServletRequest request) throws Exception {
 
     String phone = loginData.getString("phone");
     String pwd = loginData.getString("password");
@@ -89,30 +102,25 @@ public class loginApi {
       log.info("shiro filters key:{},value:{}",new Object[]{entry.getKey(),entry.getValue()});
     });*/
     JSONObject result = new JSONObject();
+    SingleResource<JSONObject> resource = new SingleResource(result);
     if (LoginTools.isLogin()) {
       result.put("session",request.getSession().getId());
       result.put("status","success");
       result.put("desc","您已经登录，无需再次登录！");
-      return result;
+      return ResponseEntity.ok(resource);
     }
     try {
      LoginTools.login(phone,pwd,true);
+     LoginTools.setAttribute("isLogin",true);
     } catch (Exception e) {
+      LoginTools.setAttribute("isLogin",false);
       result.put("status","failed");
       result.put("desc","账号或者密码错误");
-      return result;
+      return ResponseEntity.badRequest().body(resource);
     }
     result.put("session",request.getSession().getId());
     result.put("status","success");
     result.put("desc","登录成功");
-    return result;
+    return ResponseEntity.ok(resource);
   }
-
-  @RequestMapping(value = "/user", method = RequestMethod.POST)
-  public UcUser addUser(@RequestBody UcUser ucUser) throws Exception {
-    ucUserBlServie.saveUcUser(ucUser);
-    return ucUser;
-  }
-
-
 }

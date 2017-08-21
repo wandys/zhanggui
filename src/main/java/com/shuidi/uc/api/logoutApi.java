@@ -3,6 +3,7 @@ package com.shuidi.uc.api;
 import com.alibaba.fastjson.JSONObject;
 import com.shuidi.uc.api.encrypt.EncryptMD5;
 import com.shuidi.uc.api.encrypt.EncryptRsa;
+import com.shuidi.uc.api.resource.SingleResource;
 import com.shuidi.uc.api.shiro.LoginTools;
 import com.shuidi.uc.service.bl.UcUserBlServie;
 import com.shuidi.uc.service.dal.entity.UcUser;
@@ -13,6 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.hateoas.EntityLinks;
+import org.springframework.hateoas.ExposesResourceFor;
+import org.springframework.hateoas.config.EnableEntityLinks;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,63 +42,26 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping("logout")
+@ExposesResourceFor(logoutApi.class)
+@EnableEntityLinks
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class logoutApi {
 
   private static final Logger log = LoggerFactory.getLogger(logoutApi.class);
 
   @Autowired
-  private UcUserBlServie ucUserBlServie;
-
-  @Autowired
-  private RedisTemplate redisTemplate;
-
-  private static Map keyMap;
-
-  private static final String LOGINREDISKEY = "com.shuidi.uc.login.privateKey.";
-
-
-  @RequestMapping(value = "/key", method = RequestMethod.GET)
-  public Object getPrivateKey(HttpServletResponse response) throws Exception {
-
-    keyMap = EncryptRsa.initKey();
-    log.info(EncryptRsa.getPublicKey(keyMap));
-    String privateKeySign = EncryptMD5.md5(EncryptRsa.getPrivateKey(keyMap));
-    //todo 将生成的结果privateKey 存放到redis当中
-    ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
-    valueOperations.set(LOGINREDISKEY + privateKeySign, EncryptRsa.getPrivateKey(keyMap), 12, TimeUnit.HOURS);
-
-    String publicKey = EncryptRsa.getPublicKey(keyMap);
-    Pattern p = Pattern.compile("\n");
-    Matcher m = p.matcher(publicKey);
-    publicKey = m.replaceAll("");
-
-    JSONObject jsonObject = new JSONObject();
-    jsonObject.put("publicKey", publicKey);
-    jsonObject.put("publicKeySign", privateKeySign);
-    //jsonObject.put("privateKey", valueOperations.get(LOGINREDISKEY + privateKeySign));
-    return jsonObject;
-  }
+  private EntityLinks entityLinks;
 
   @RequestMapping(value = {"/",""}, method = RequestMethod.GET,produces = "application/json")
-  public Object login(String name, String pwd, boolean rememberMe, String keySign,HttpServletRequest request) throws Exception {
+  public ResponseEntity login(String name, String pwd, boolean rememberMe, String keySign, HttpServletRequest request) throws Exception {
 
     JSONObject result = new JSONObject();
-//    log.debug("准备退出的用户名是1：{}",new Object[]{(String)SecurityUtils.getSubject().getPrincipal()});
     log.debug("准备退出的用户名是2：{}",new Object[]{((UcUser)SecurityUtils.getSubject().getSession().getAttribute("userInfo")).getName()});
-
     LoginTools.logout();
-
     result.put("session",request.getSession().getId());
     result.put("status","success");
     result.put("desc","退出成功");
-    return result;
+    SingleResource<JSONObject> resource = new SingleResource(result);
+    return ResponseEntity.ok(resource);
   }
-
-  @RequestMapping(value = "/user", method = RequestMethod.POST)
-  public UcUser addUser(@RequestBody UcUser ucUser) throws Exception {
-    ucUserBlServie.saveUcUser(ucUser);
-    return ucUser;
-  }
-
-
 }
