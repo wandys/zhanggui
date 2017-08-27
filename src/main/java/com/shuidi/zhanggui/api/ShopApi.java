@@ -94,7 +94,7 @@ public class ShopApi {
     shop.setId(shopId);
     shop.setOperateId(LoginTools.getLonginUser().getId());
     Long id = shopServie.updateShop(shop);
-    Link selfLink = entityLinks.linkToSingleResource(Shop.class, id);
+    Link selfLink = entityLinks.linkToSingleResource(Shop.class, shopId);
     OnlyResource resource = new OnlyResource();
     resource.add(selfLink);
     return ResponseEntity.ok(resource);
