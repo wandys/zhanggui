@@ -2,7 +2,9 @@
  * Created by houyefeng on 2016-10-19.
  */
 
-package com.shuidi.uc.commons.enums;
+package com.shuidi.commons.enums;
+
+import com.shuidi.uc.commons.enums.Enum;
 
 /**
  * 通用枚举类型，数据库中的值是yes、no时使用.

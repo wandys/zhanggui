@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.service.dal.entity;
 
 
+import com.shuidi.commons.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,7 @@ import java.util.Date;
 @Getter
 public class Shop implements Serializable {
 
+    private static final long serialVersionUID = 2750779778524075108L;
     /**
      * 唯一索引id，自增(必填项)(主键ID).
      */
@@ -31,7 +33,7 @@ public class Shop implements Serializable {
     /**
      *  店铺状态.
      */
-    private String status;
+    private Status status;
 
     /**
      * 店铺地址.
@@ -67,6 +69,7 @@ public class Shop implements Serializable {
      * 位置信息.
      */
     private Position position;
+
 
 }
 

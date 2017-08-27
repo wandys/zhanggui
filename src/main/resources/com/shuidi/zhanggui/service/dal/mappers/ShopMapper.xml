@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.shuidi.zhanggui.service.dal.mappers.ShopMapper">
+    <resultMap id="shopResult" type="com.shuidi.zhanggui.service.dal.entity.Shop">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="status" property="status"/>
+        <result column="logo_image" property="logoImage"/>
+        <result column="user_id" property="userId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="operate_id" property="operateId"/>
+        <result column="position_id" property="positionId"/>
+    </resultMap>
+    <sql id="selectParam">
+        id,
+        name,
+        status,
+        position_id,
+        logo_image,
+        user_id,
+        create_time,
+        update_time,
+        operate_id
+    </sql>
+
+    <select id="getShop" resultType="com.shuidi.zhanggui.service.dal.entity.Shop">
+        SELECT
+        <include refid="selectParam"></include>
+        FROM
+          shop
+        WHERE
+        id = #{id}
+    </select>
+    <select id="findShops" parameterType="java.util.Map" resultType="com.shuidi.zhanggui.service.dal.entity.Shop">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+          shop
+        <where>
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
+            </if>
+            <if test="userId!=null">
+                AND user_id = #{userId}
+            </if>
+        </where>
+    </select>
+    <insert id="saveShop" useGeneratedKeys="true" keyProperty="id"  parameterType="com.shuidi.zhanggui.service.dal.entity.Shop">
+        INSERT INTO
+            shop(
+                  name,
+                  status,
+                  position_id,
+                  logo_image,
+                  user_id,
+                  create_time,
+                  update_time,
+                  operate_id
+            )
+        VALUES (
+          #{name},
+          #{status},
+          #{positionId},
+          #{logoImage},
+          #{userId},
+          now(),
+          now(),
+          #{operateId}
+        );
+    </insert>
+    <update id="updateShop" parameterType="com.shuidi.zhanggui.service.dal.entity.Shop">
+        UPDATE
+        shop
+        <set>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="positionId!=null">
+                position_id = #{positionId},
+            </if>
+            <if test="logoImage!=null">
+                logo_image = #{logoImage},
+            </if>
+            <if test="operateId!=null">
+                operate_id = #{operateId},
+            </if>
+            update_time = now()
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+    <update id="deleteShop" parameterType="com.shuidi.zhanggui.service.dal.entity.Shop">
+        UPDATE
+        shop
+        <set>
+            status = 'DELETED',
+            operate_id = #{operateId},
+            update_time = now()
+        </set>
+        <where>
+            id = #{id}
+        </where>
+
+    </update>
+</mapper>

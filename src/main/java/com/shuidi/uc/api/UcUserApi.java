@@ -4,9 +4,9 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import com.shuidi.commons.exception.CheckedException;
-import com.shuidi.uc.api.resource.CollectsResource;
-import com.shuidi.uc.api.resource.OnlyResource;
-import com.shuidi.uc.api.resource.SingleResource;
+import com.shuidi.commons.resource.CollectsResource;
+import com.shuidi.commons.resource.OnlyResource;
+import com.shuidi.commons.resource.SingleResource;
 import com.shuidi.uc.api.shiro.PassWordCreater;
 import com.shuidi.uc.commons.enums.Status;
 import com.shuidi.uc.commons.utils.UserCheckerUtil;

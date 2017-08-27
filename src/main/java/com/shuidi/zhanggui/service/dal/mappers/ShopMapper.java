@@ -49,8 +49,8 @@ public interface ShopMapper {
      * 删除店铺信息.
      * <p>同时删除对应的坐标信息</p>
      *
-     * @param id 店铺id
+     * @param shop 店铺id
      * @return 更新影响行数
      */
-    public Long deleteShop(Long id);
+    public Long deleteShop(Shop shop);
 }

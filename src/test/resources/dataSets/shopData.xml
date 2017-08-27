@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <shop id="1" name="玲珑小铺10" status="ENABLED" position_id="1" logo_image="123456" user_id="1" update_time="2017-11-13 22:23:12" create_time="2017-11-13 22:23:12" operate_id="1" />
+    <shop id="2" name="玲珑小铺11" status="ENABLED" position_id="1" logo_image="123456" user_id="1" update_time="2017-11-13 22:23:12" create_time="2017-11-13 22:23:12" operate_id="1" />
+    <shop id="3" name="玲珑小铺20" status="ENABLED" position_id="2" logo_image="123456" user_id="2" update_time="2017-11-13 22:23:12" create_time="2017-11-13 22:23:12" operate_id="2" />
+</dataset>
+
