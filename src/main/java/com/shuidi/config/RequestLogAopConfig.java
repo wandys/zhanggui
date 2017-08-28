@@ -56,7 +56,7 @@ public class RequestLogAopConfig {
 
     String url = request.getRequestURL().toString();
     String method = request.getMethod();
-    String uri = request.getRequestURI();
+    String localAddr = request.getLocalAddr();//获取WEB服务器的IP地址
     String queryString = request.getQueryString();
     String loginUser = "none";
     if (LoginTools.isLogin()) {
@@ -80,8 +80,9 @@ public class RequestLogAopConfig {
         .append(",method:" + method)
         .append(",loginUser:" + loginUser)
         //.append(",uri:" + uri)
-        .append(",params:" + paramsBuffer.toString());
-        //.append(",inputParamMap:" + inputParamMap);
+        .append(",params:" + paramsBuffer.toString())
+        .append(",localAddr:" + localAddr);
+    //.append(",inputParamMap:" + inputParamMap);
     requestStr = requestBuffer.toString();
   }
 

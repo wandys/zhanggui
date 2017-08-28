@@ -35,7 +35,7 @@ public class ResultAopConfig {
       Object body = responseEntity.getBody();
       if (responseEntity.getBody() instanceof BaseResource) {
         BaseResource resource = (BaseResource) body;
-        resource.setCode("200");
+        resource.setCode(String.valueOf(responseEntity.getStatusCode().value()));
         resource.setStatus(State.SUCCESS);
         resource.setDesc(State.SUCCESS.name());
       }
