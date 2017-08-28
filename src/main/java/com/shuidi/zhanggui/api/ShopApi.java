@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.api;
 
 import com.shuidi.commons.enums.Status;
+import com.shuidi.commons.exception.ServiceException;
 import com.shuidi.commons.resource.CollectsResource;
 import com.shuidi.commons.resource.OnlyResource;
 import com.shuidi.commons.resource.SingleResource;
@@ -53,6 +54,9 @@ public class ShopApi {
   @RequestMapping(value = "/",method = RequestMethod.GET)
   @ResponseBody
   public ResponseEntity getLoginShops() {
+    /*if (LoginTools.isLogin()) {
+      throw new ServiceException("测试异常");
+    }*/
     Map<String, Object> searchMap = new HashMap<>();
     searchMap.put("userId", LoginTools.getLonginUser().getId());
     List<Shop> shops = shopServie.findShops(searchMap);
