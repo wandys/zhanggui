@@ -5,6 +5,7 @@ import com.shuidi.zhanggui.service.dal.BrandDao;
 import com.shuidi.zhanggui.service.dal.entity.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Map;
 /**
  * Created by wandy on 17-8-6.
  */
+@Transactional
 @Service("brandService")
 public class BrandServiceImpl implements BrandService {
 

@@ -84,4 +84,6 @@ public class ShopServiceImplTest extends ServiceBaseTest {
     Assert.assertEquals(Status.DELETED, shopNew.getStatus());
   }
 
+
+
 }

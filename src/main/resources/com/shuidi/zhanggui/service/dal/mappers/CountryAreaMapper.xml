@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.shuidi.zhanggui.service.dal.mappers.CountryAreaMapper">
+    <resultMap id="areaResult" type="com.shuidi.zhanggui.service.dal.entity.CountryArea">
+        <id column="id" property="id"/>
+        <result column="area_no" property="areaNo"/>
+        <result column="name" property="name"/>
+        <result column="pNo" property="pNo"/>
+        <result column="pInfos" property="pInfos"/>
+    </resultMap>
+    <sql id="selectParam">
+        id,
+        name,
+        area_no,
+        pNo,
+        pInfos
+    </sql>
+
+    <select id="findAreas" parameterType="java.util.Map"
+            resultType="com.shuidi.zhanggui.service.dal.entity.CountryArea">
+        SELECT
+        <include refid="selectParam"></include>
+        FROM
+        country_area
+        <where>
+            <if test="pNo!=null">
+                AND pNo = #{pNo}
+            </if>
+            <if test="pInfos!=null">
+                AND pInfos like concat('%',#{pInfos},'%')
+            </if>
+        </where>
+    </select>
+    <insert id="insertAreas" parameterType="java.util.List">
+        INSERT INTO
+            country_area(
+                name,
+                area_no,
+                pNo,
+                pInfos
+            )
+        VALUES
+        <foreach collection="list" item="item" separator="," index="list">
+            (
+            #{item.name},
+            #{item.areaNo},
+            #{item.pNo},
+            #{item.pInfos}
+            )
+        </foreach>
+        ;
+    </insert>
+
+</mapper>

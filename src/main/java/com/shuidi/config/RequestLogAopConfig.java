@@ -59,9 +59,9 @@ public class RequestLogAopConfig {
     String localAddr = request.getLocalAddr();//获取WEB服务器的IP地址
     String queryString = request.getQueryString();
     String loginUser = "none";
-    if (LoginTools.isLogin()) {
+    /*if (LoginTools.isLogin()) {
       loginUser = LoginTools.getLonginUser().getPhone();
-    }
+    }*/
     // 获取输入参数
     StringBuffer paramsBuffer = new StringBuffer();
     if (method.equals("GET")) {

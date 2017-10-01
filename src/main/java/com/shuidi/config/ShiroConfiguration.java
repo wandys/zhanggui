@@ -27,14 +27,14 @@ import java.util.Map;
 /**
  * Shiro 配置
  * <p>
- * Apache Shiro 核心通过 Filter 来实现，就好像SpringMvc 通过DispachServlet 来主控制一样。
+ * Apache Shi 核心通过 Filter 来实现，就好像SpringMvc 通过DispachServlet 来主控制一样。
  * 既然是使用 Filter 一般也就能猜到，是通过URL规则来进行过滤和权限校验，所以我们需要定义一系列关于URL的规则和访问权限。
  * <p>
  * Created by wandy on 17-8-17.
  */
 
 
-@Configuration
+//@Configuration
 public class ShiroConfiguration {
   private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
 
@@ -53,8 +53,8 @@ public class ShiroConfiguration {
    */
 
 
-  @Bean
-  @Order(2)
+  //@Bean
+ // @Order(2)
   public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager,ShiroFilterConfig shiroFilterConfig) {
     logger.debug("ShiroConfiguration.shirFilter()");
     ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -99,7 +99,7 @@ public class ShiroConfiguration {
   }
 
 
-  @Bean
+  //@Bean
   public SecurityManager securityManager(RedisSessionDAO redisSessionDAO) {
     DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
     securityManager.setSessionManager(sessionManager(redisSessionDAO));
@@ -108,31 +108,31 @@ public class ShiroConfiguration {
     return securityManager;
   }
 
-  @Bean
+ // @Bean
   public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
     return new LifecycleBeanPostProcessor();
   }
 
-  @Bean
+  //@Bean
   public RedisCacheManager redisCacheManager() {
     return new RedisCacheManager();
   }
 
-  @Bean
+  //@Bean
   public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor(RedisSessionDAO redisSessionDAO) {
     AuthorizationAttributeSourceAdvisor aasa = new AuthorizationAttributeSourceAdvisor();
     aasa.setSecurityManager(securityManager(redisSessionDAO));
     return new AuthorizationAttributeSourceAdvisor();
   }
 
-  @Bean
+  //@Bean
   public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
     DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
     daap.setProxyTargetClass(true);
     return daap;
   }
 
-  @Bean
+ // @Bean
   public SessionManager sessionManager(RedisSessionDAO redisSessionDAO) {
     DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
     sessionManager.setSessionDAO(redisSessionDAO);
@@ -152,7 +152,7 @@ public class ShiroConfiguration {
    * @return
    */
 
-  @Bean
+  //@Bean
   public ShiroRealm myShiroRealm() {
     ShiroRealm myShiroRealm = new ShiroRealm();
     //添加密码验证
@@ -169,7 +169,7 @@ public class ShiroConfiguration {
    * @return
    */
 
-  @Bean
+ // @Bean
   public ShuidiCredentialsMatcher allowAllCredentialsMatcher() {
 
     ShuidiCredentialsMatcher matcher = new ShuidiCredentialsMatcher();

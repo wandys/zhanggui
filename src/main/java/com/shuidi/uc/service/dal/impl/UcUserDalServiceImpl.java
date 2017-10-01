@@ -1,5 +1,6 @@
 package com.shuidi.uc.service.dal.impl;
 
+import com.shuidi.cache.CacheSelect;
 import com.shuidi.uc.service.dal.UcUserDalService;
 import com.shuidi.uc.service.dal.entity.UcUser;
 import com.shuidi.uc.service.dal.mappers.UcUserMapper;
@@ -24,6 +25,7 @@ public class UcUserDalServiceImpl implements UcUserDalService {
     private UcUserMapper ucUserMapper;
 
     @Override
+    @CacheSelect
     public UcUser getUserById(Long userId) {
         return ucUserMapper.getUserById(userId);
     }
