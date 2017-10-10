@@ -35,6 +35,7 @@ public interface ShopMapper {
      * @param shop 店铺信息
      * @return 影响行数
      */
+
     public Long saveShop(Shop shop);
 
     /**

@@ -1,5 +1,8 @@
 package com.shuidi.zhanggui.service.dal.impl;
 
+import com.shuidi.cache.CacheInsert;
+import com.shuidi.cache.CacheUpdate;
+import com.shuidi.cache.DataCacheType;
 import com.shuidi.zhanggui.service.dal.ShopDao;
 import com.shuidi.zhanggui.service.dal.entity.Shop;
 import com.shuidi.zhanggui.service.dal.mappers.ShopMapper;
@@ -26,12 +29,14 @@ public class ShopDaoImpl implements ShopDao {
   }
 
   @Override
+  @CacheInsert(dataType = DataCacheType.pojo)
   public Long saveShop(Shop shop) {
     shopMapper.saveShop(shop);
     return shop.getId();
   }
 
   @Override
+  @CacheUpdate(dataType = DataCacheType.pojo)
   public Long updateShop(Shop shop) {
     return shopMapper.updateShop(shop);
   }

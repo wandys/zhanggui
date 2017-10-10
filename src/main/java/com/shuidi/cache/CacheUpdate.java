@@ -16,7 +16,9 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface CacheSelect {
+public @interface CacheUpdate {
 
   public DataCacheType dataType() default DataCacheType.pojo;
+
+  public String keyField() default "id";
 }

@@ -1,4 +1,4 @@
-package com.shuidi.config;
+package com.shuidi.config.cacheAspect;
 
 import com.alibaba.fastjson.JSONObject;
 import com.shuidi.cache.CacheKeyGeneter;
@@ -23,7 +23,7 @@ import java.util.HashMap;
 @Aspect
 @Configuration
 @EnableAspectJAutoProxy(exposeProxy=true)
-public class CacheAspect {
+public class SelectCacheAspect {
   /*@Autowired
   private JedisPool jedisPool;*/
  /* @Autowired
@@ -50,41 +50,10 @@ public class CacheAspect {
       Class returnType = ((MethodSignature) pjp.getSignature()).getReturnType();
       RedisPojoUtil redisPojoUtil = new RedisPojoUtil();
       redisPojoUtil.toPojo(new HashMap<>(),returnType);
-      return redisService.get(cacheKey);
+      //将获取到的字符串转换为对应对象
+      String cacheResult = redisService.get(cacheKey);
+      return JSONObject.parseObject(cacheResult,returnType);
     }
-    /*System.out.print("。。。。。。。。。。。。。。。。。。。。。。。。。。。");
-    return pjp.getArgs();*                                                                                                                                                                                                                                                                                                                                                                                                              /
-    /*String targetName = joinPoint.getTarget().getClass().getName();
-    String methodName = joinPoint.getSignature().getName();
-    Object[] arguments = joinPoint.getArgs();
-    try {
-      Class targetClass = Class.forName(targetName);
-      Method[] methods = targetClass.getMethods();
-      DataCacheType dataCacheType;
-      for (Method method : methods) {
-        if (method.getName().equals(methodName)) {
-          Class[] clazzs = method.getParameterTypes();
-          if (clazzs.length == arguments.length) {
-            dataCacheType = method.getAnnotation(CacheSelect.class).dataType();
-            break;
-          }
-        }
-      }
-      String cacheKey = CacheKeyGeneter.getKey(CacheKeyGeneter.CacheZone.TEMP, this.getClass(), arguments);
-      String data = jedisPool.getResource().get(cacheKey);
-      if (StringUtils.isBlank(data)) {
-        Object result = pjp.proceed();
-        jedisPool.getResource().set(cacheKey, JSONObject.toJSONString(result));
-        return result;
-      } else {
-        return data;
-      }
-
-    } catch (Exception e) {
-      return null;
-    } catch (Throwable throwable) {
-      return null;
-    }*/
   }
 
 }

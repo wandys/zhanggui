@@ -1,5 +1,8 @@
 package com.shuidi.zhanggui.service.dal;
 
+import com.shuidi.cache.CacheInsert;
+import com.shuidi.cache.CacheUpdate;
+import com.shuidi.cache.DataCacheType;
 import com.shuidi.zhanggui.service.dal.entity.Shop;
 
 import java.util.List;
