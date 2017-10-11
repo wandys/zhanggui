@@ -1,29 +1,23 @@
 package com.shuidi.config.cacheAspect;
 
-import com.alibaba.fastjson.JSONObject;
 import com.shuidi.cache.CacheInsert;
 import com.shuidi.cache.CacheKeyGeneter;
 import com.shuidi.cache.DataCacheType;
 import com.shuidi.cache.RedisPojoUtil;
 import com.shuidi.cache.RedisService;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.annotation.Order;
-import sun.plugin2.util.PojoUtil;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

@@ -26,7 +26,7 @@ import javax.annotation.Resource;
  */
 public class ShiroRealm extends AuthorizingRealm {
 
-  private final static Logger log = LoggerFactory.getLogger(UcUserApi.class);
+  private final static Logger log = LoggerFactory.getLogger(ShiroRealm.class);
 
   @Resource
   private UcUserBlServie ucUserBlServie;

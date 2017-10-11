@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.service.dal.impl;
 
 import com.shuidi.cache.CacheInsert;
+import com.shuidi.cache.CacheSelect;
 import com.shuidi.cache.CacheUpdate;
 import com.shuidi.cache.DataCacheType;
 import com.shuidi.zhanggui.service.dal.ShopDao;
@@ -19,11 +20,13 @@ public class ShopDaoImpl implements ShopDao {
   private ShopMapper shopMapper;
 
   @Override
+  @CacheSelect
   public Shop getShop(Long id) {
     return shopMapper.getShop(id);
   }
 
   @Override
+  @CacheSelect
   public List<Shop> findShops(Map map) {
     return shopMapper.findShops(map);
   }
