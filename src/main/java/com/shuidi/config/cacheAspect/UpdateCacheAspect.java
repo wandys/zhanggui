@@ -1,9 +1,6 @@
 package com.shuidi.config.cacheAspect;
 
-import com.alibaba.fastjson.JSONObject;
-import com.shuidi.cache.CacheInsert;
 import com.shuidi.cache.CacheKeyGeneter;
-import com.shuidi.cache.CacheSelect;
 import com.shuidi.cache.CacheUpdate;
 import com.shuidi.cache.DataCacheType;
 import com.shuidi.cache.PojoCompareResult;
