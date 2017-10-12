@@ -19,4 +19,8 @@ import java.lang.annotation.Target;
 public @interface CacheSelect {
 
   public DataCacheType dataType() default DataCacheType.pojo;
+
+  public boolean clearCache() default false;
+
+  public Class[] listener() default {};
 }

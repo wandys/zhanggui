@@ -8,6 +8,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.List;
 
 /**
  * @author wandy
@@ -21,4 +22,8 @@ public @interface CacheUpdate {
   public DataCacheType dataType() default DataCacheType.pojo;
 
   public String keyField() default "id";
+
+  public boolean clearCache() default true;
+
+  public Class[] listener();
 }

@@ -24,6 +24,14 @@ public class CacheKeyGeneter {
     return stringBuilder.toString();
 
   }
+  public static String getLisenerKey(Class classType) {
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append(CacheZone.LISENER.name()).append(":");
+    stringBuilder.append(classType.getName()).append(":");
+    return stringBuilder.toString();
+
+  }
+
 
   public static String getKey(CacheZone zone, Class classType, Object key) {
     String paramStr = JSONObject.toJSONString(key);
@@ -50,6 +58,7 @@ public class CacheKeyGeneter {
 
   public enum CacheZone {
     POJO,
-    TEMP
+    TEMP,
+    LISENER
   }
 }

@@ -3,6 +3,7 @@ package com.shuidi.config.cacheAspect;
 import com.alibaba.fastjson.JSONObject;
 import com.shuidi.cache.CacheInsert;
 import com.shuidi.cache.CacheKeyGeneter;
+import com.shuidi.cache.CacheSelect;
 import com.shuidi.cache.CacheUpdate;
 import com.shuidi.cache.DataCacheType;
 import com.shuidi.cache.PojoCompareResult;
@@ -51,6 +52,8 @@ public class UpdateCacheAspect {
     Method currentMethod = target.getClass().getMethod(msig.getName(), msig.getParameterTypes());
     DataCacheType dataCacheType = currentMethod.getAnnotation(CacheUpdate.class).dataType();
     String field = currentMethod.getAnnotation(CacheUpdate.class).keyField();
+    boolean clearCache = currentMethod.getAnnotation(CacheUpdate.class).clearCache();
+    Class[] listeners = currentMethod.getAnnotation(CacheUpdate.class).listener();
     List<Object> datas = new ArrayList<>();
     Object[] args = pjp.getArgs();
     //当前对map类型的数据暂时无法处理
@@ -65,6 +68,10 @@ public class UpdateCacheAspect {
     }
     if (datas.size() >= 1) {
       updateCacheData(datas, field);
+      //清除缓存信息.
+      if (clearCache) {
+        clearCacheData(listeners);
+      }
     }
     return result;
 
@@ -94,8 +101,22 @@ public class UpdateCacheAspect {
           stringMap.entrySet().forEach(entry -> redisService.setMap(cacheKey, entry.getKey(), entry.getValue()));
         }*/
       } catch (Exception e) {
-        throw new ServiceException("pojo paras error",e);
+        throw new ServiceException("pojo paras error", e);
       }
+    });
+  }
+
+  /**
+   * 清除缓存的信息.
+   *
+   * @param listeners 监听类
+   */
+  private void clearCacheData(Class[] listeners) {
+
+    Arrays.stream(listeners).forEach(aClass -> {
+      String lisenerKey = CacheKeyGeneter.getLisenerKey(aClass);
+      List<String> cacheKeys = redisService.sMembers(lisenerKey);
+      cacheKeys.forEach(cacheKey -> redisService.sRem(lisenerKey,cacheKey));
     });
   }
 

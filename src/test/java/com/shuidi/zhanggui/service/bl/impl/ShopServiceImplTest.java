@@ -54,7 +54,7 @@ public class ShopServiceImplTest extends ServiceBaseTest {
   @DatabaseSetup({"classpath:dataSets/shopData.xml"})
   public void updateShop() throws Exception {
     Shop shop = new Shop();
-    shop.setId(20L);
+    shop.setId(1L);
     shop.setLogoImage("222222");
     shop.setName("111111");
     shop.setPositionId(1l);

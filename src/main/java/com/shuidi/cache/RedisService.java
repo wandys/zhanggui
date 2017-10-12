@@ -2,6 +2,7 @@ package com.shuidi.cache;
 
 import org.omg.CORBA.TIMEOUT;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -32,6 +33,22 @@ public interface RedisService {
   public long rpush(String key, String value);
 
   public long rpush(String key, Object value);
+
+  public Long sAdd(String key,String vaule);
+
+  public Long sAdd(String key,Object vaule);
+
+  public Long sRem(String key,String vaule);
+
+  public Long sRem(String key,Object vaule);
+
+  public Boolean sIsMember(String key,String vaule);
+
+  public Boolean sIsMember(String key,Object vaule);
+
+  public List<String> sMembers(String key);
+
+  public <T> List<T> sMembers(String key,Class<T> clz);
 
   public String lpop(String key);
 

@@ -2,8 +2,6 @@ package com.shuidi.cache;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.shuidi.uc.api.loginApi;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +15,10 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Service("redisService")
@@ -181,6 +179,122 @@ public class RedisServiceImpl implements RedisService {
       }
     });
     return (Long) result;
+  }
+
+  @Override
+  public Long sAdd(String key, String vaule) {
+    Object result = redisTemplate.execute(new RedisCallback() {
+      @Override
+      public Object doInRedis(RedisConnection connection) {
+        try {
+          RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
+          return connection.sAdd(serializer.serialize(key), serializer.serialize(vaule));
+        } catch (DataAccessException e) {
+          log.error("", e);
+          return false;
+        }
+
+      }
+    });
+    return (Long) result;
+  }
+
+  @Override
+  public Long sAdd(String key, Object vaule) {
+    String strValue = JSONObject.toJSONString(vaule);
+    return sAdd(key,strValue);
+  }
+
+  @Override
+  public Long sRem(String key, String vaule) {
+    Object result = redisTemplate.execute(new RedisCallback() {
+      @Override
+      public Object doInRedis(RedisConnection connection) {
+        try {
+          RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
+          return connection.sRem(serializer.serialize(key), serializer.serialize(vaule));
+        } catch (DataAccessException e) {
+          log.error("", e);
+          return false;
+        }
+
+      }
+    });
+    return (Long) result;
+  }
+
+  @Override
+  public Long sRem(String key, Object vaule) {
+    String strValue = JSONObject.toJSONString(vaule);
+    return sRem(key,strValue);
+  }
+
+  @Override
+  public Boolean sIsMember(String key, String vaule) {
+    Object result = redisTemplate.execute(new RedisCallback() {
+      @Override
+      public Object doInRedis(RedisConnection connection) {
+        try {
+          RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
+          return connection.sIsMember(serializer.serialize(key), serializer.serialize(vaule));
+        } catch (DataAccessException e) {
+          log.error("", e);
+          return false;
+        }
+
+      }
+    });
+    return (Boolean) result;
+  }
+
+  @Override
+  public Boolean sIsMember(String key, Object vaule) {
+    String strValue = JSONObject.toJSONString(vaule);
+    return sIsMember(key,strValue);
+  }
+
+  @Override
+  public List<String> sMembers(String key) {
+    Object result = redisTemplate.execute(new RedisCallback() {
+      @Override
+      public Object doInRedis(RedisConnection connection) {
+        List<String> values = new ArrayList<>();
+        try {
+          RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
+          Set<byte[]> valueSet = connection.sMembers(serializer.serialize(key));
+
+          valueSet.forEach(bytes -> values.add(serializer.deserialize(bytes)));
+          return values;
+        } catch (DataAccessException e) {
+          log.error("", e);
+          return values;
+        }
+
+      }
+    });
+    return (List<String>) result;
+  }
+
+  @Override
+  public <T> List<T> sMembers(String key,Class<T> clz) {
+    Object result = redisTemplate.execute(new RedisCallback() {
+      @Override
+      public Object doInRedis(RedisConnection connection) {
+        List<T> values = new ArrayList<>();
+        try {
+          RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
+          Set<byte[]> valueSet = connection.sMembers(serializer.serialize(key));
+
+          valueSet.forEach(bytes -> values.add(JSONObject.parseObject(serializer.deserialize(bytes),clz)));
+          return values;
+        } catch (DataAccessException e) {
+          log.error("", e);
+          return values;
+        }
+
+      }
+    });
+    return (List<T>) result;
   }
 
   @Override

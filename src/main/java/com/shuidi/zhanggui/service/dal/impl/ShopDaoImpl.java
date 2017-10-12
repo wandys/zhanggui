@@ -20,13 +20,13 @@ public class ShopDaoImpl implements ShopDao {
   private ShopMapper shopMapper;
 
   @Override
-  @CacheSelect
+  @CacheSelect(clearCache = true,listener = Shop.class)
   public Shop getShop(Long id) {
     return shopMapper.getShop(id);
   }
 
   @Override
-  @CacheSelect
+  @CacheSelect(clearCache = true,listener = Shop.class)
   public List<Shop> findShops(Map map) {
     return shopMapper.findShops(map);
   }
@@ -39,7 +39,7 @@ public class ShopDaoImpl implements ShopDao {
   }
 
   @Override
-  @CacheUpdate(dataType = DataCacheType.pojo)
+  @CacheUpdate(dataType = DataCacheType.pojo,clearCache = true,listener = Shop.class)
   public Long updateShop(Shop shop) {
     return shopMapper.updateShop(shop);
   }
