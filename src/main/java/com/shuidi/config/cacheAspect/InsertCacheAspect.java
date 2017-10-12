@@ -24,7 +24,7 @@ import java.util.Map;
 @Order(10)
 @Aspect
 @Configuration
-@EnableAspectJAutoProxy(exposeProxy=true)
+@EnableAspectJAutoProxy(exposeProxy = true)
 public class InsertCacheAspect {
   /*@Autowired
   private JedisPool jedisPool;*/
@@ -34,7 +34,7 @@ public class InsertCacheAspect {
   private RedisService redisService;
 
   //@Pointcut("bean(*DalService)") //切入点设置为所有以DalService结尾的bean
-   @Pointcut("@annotation(com.shuidi.cache.CacheInsert)") //切入点设置为包含指定注解的方法
+  @Pointcut("@annotation(com.shuidi.cache.CacheInsert)") //切入点设置为包含指定注解的方法
   //@Pointcut("execution(* com.shuidi.*.service.dal.*.*(Long))")
   public void aopCacheTarget() {
   }
@@ -46,7 +46,7 @@ public class InsertCacheAspect {
     //获取接口类上面的注解
     //Method method = ((MethodSignature) pjp.getSignature()).getMethod();
     //获取实现类上面的注解
-    MethodSignature msig  = (MethodSignature) pjp.getSignature();
+    MethodSignature msig = (MethodSignature) pjp.getSignature();
     Object target = pjp.getTarget();
     Method currentMethod = target.getClass().getMethod(msig.getName(), msig.getParameterTypes());
     DataCacheType dataCacheType = currentMethod.getAnnotation(CacheInsert.class).dataType();
@@ -55,16 +55,16 @@ public class InsertCacheAspect {
     Object[] args = pjp.getArgs();
     //当前对map类型的数据暂时无法处理
     if (dataCacheType == DataCacheType.pojo) {
-      if (args.length >0 || args.length <= 1) {
+      if (args.length > 0 && args.length <= 1) {
         datas.add(args[0]);
       }
     } else if (dataCacheType == DataCacheType.list) {
-      if (args.length >0 || args.length <= 1) {
+      if (args.length > 0 && args.length <= 1) {
         datas = Arrays.asList(args);
       }
     }
     if (datas.size() >= 1) {
-      saveCacheData(datas,field);
+      saveCacheData(datas, field);
     }
     return result;
 
@@ -76,14 +76,14 @@ public class InsertCacheAspect {
    *
    * @param datas 数据
    */
-  private void saveCacheData(List<Object> datas,String field) {
+  private void saveCacheData(List<Object> datas, String field) {
     datas.forEach(data -> {
       //Class dataClass = data.getClass();
-      String cacheKey = CacheKeyGeneter.getPojoKey(data,field);
+      String cacheKey = CacheKeyGeneter.getPojoKey(data, field);
       RedisPojoUtil pojoUtil = new RedisPojoUtil();
-      Map<String,String> dataMap = pojoUtil.toMap(data);
+      Map<String, String> dataMap = pojoUtil.toMap(data);
       dataMap.entrySet().forEach(entry -> {
-        redisService.setMap(cacheKey,entry.getKey(),entry.getValue());
+        redisService.setMap(cacheKey, entry.getKey(), entry.getValue());
       });
     });
   }

@@ -23,7 +23,7 @@ import java.util.HashMap;
 @Order(10)
 @Aspect
 @Configuration
-@EnableAspectJAutoProxy(exposeProxy=true)
+@EnableAspectJAutoProxy(exposeProxy = true)
 public class SelectCacheAspect {
   /*@Autowired
   private JedisPool jedisPool;*/
@@ -33,7 +33,7 @@ public class SelectCacheAspect {
   private RedisService redisService;
 
   //@Pointcut("bean(*DalService)") //切入点设置为所有以DalService结尾的bean
-   @Pointcut("@annotation(com.shuidi.cache.CacheSelect)") //切入点设置为包含指定注解的方法
+  @Pointcut("@annotation(com.shuidi.cache.CacheSelect)") //切入点设置为包含指定注解的方法
   //@Pointcut("execution(* com.shuidi.*.service.dal.*.*(Long))")
   public void aopCacheTarget() {
   }
@@ -47,15 +47,15 @@ public class SelectCacheAspect {
     boolean clearCache = currentMethod.getAnnotation(CacheSelect.class).clearCache();
     Class[] listeners = currentMethod.getAnnotation(CacheSelect.class).listener();
 
-    String cacheKey = CacheKeyGeneter.getKey(CacheKeyGeneter.CacheZone.TEMP, pjp.getTarget().getClass(),pjp.getSignature().getName(), pjp.getArgs());
+    String cacheKey = CacheKeyGeneter.getKey(CacheKeyGeneter.CacheZone.TEMP, pjp.getTarget().getClass(), pjp.getSignature().getName(), pjp.getArgs());
     //String data = redisService.get(cacheKey);
     if (!redisService.exists(cacheKey)) {
       Object result = pjp.proceed();
       //加入到对应pojo的监听中
       if (clearCache) {
-        Arrays.stream(listeners).forEach(listenerClz->{
+        Arrays.stream(listeners).forEach(listenerClz -> {
           String lisenerKey = CacheKeyGeneter.getLisenerKey(listenerClz);
-          redisService.sAdd(lisenerKey,cacheKey);
+          redisService.sAdd(lisenerKey, cacheKey);
         });
       }
       //缓存
@@ -65,10 +65,10 @@ public class SelectCacheAspect {
     } else {
       Class returnType = ((MethodSignature) pjp.getSignature()).getReturnType();
       RedisPojoUtil redisPojoUtil = new RedisPojoUtil();
-      redisPojoUtil.toPojo(new HashMap<>(),returnType);
+      redisPojoUtil.toPojo(new HashMap<>(), returnType);
       //将获取到的字符串转换为对应对象
       String cacheResult = redisService.get(cacheKey);
-      return JSONObject.parseObject(cacheResult,returnType);
+      return JSONObject.parseObject(cacheResult, returnType);
     }
   }
 

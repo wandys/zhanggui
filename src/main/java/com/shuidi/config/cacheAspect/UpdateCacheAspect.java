@@ -113,7 +113,7 @@ public class UpdateCacheAspect {
     Arrays.stream(listeners).forEach(aClass -> {
       String lisenerKey = CacheKeyGeneter.getLisenerKey(aClass);
       List<String> cacheKeys = redisService.sMembers(lisenerKey);
-      cacheKeys.forEach(cacheKey -> redisService.sRem(lisenerKey,cacheKey));
+      cacheKeys.forEach(cacheKey -> redisService.sRem(lisenerKey, cacheKey));
     });
   }
 
