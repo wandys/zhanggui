@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.service.dal.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Describe :规格表信息.
@@ -30,9 +31,18 @@ public class Specifications implements Serializable {
     private Long specGroupId;
 
     /**
+     * 规格组信息.
+     */
+    private SpecificationGroup specificationGroup;
+
+    /**
      * 分类id.
      */
     private Long categoryId;
+    /**
+     * 规格设置信息.
+     */
+    private List<SpecificationOption> specificationOptions;
 
     public Long getId() {
         return id;
@@ -64,5 +74,21 @@ public class Specifications implements Serializable {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public SpecificationGroup getSpecificationGroup() {
+        return specificationGroup;
+    }
+
+    public void setSpecificationGroup(SpecificationGroup specificationGroup) {
+        this.specificationGroup = specificationGroup;
+    }
+
+    public List<SpecificationOption> getSpecificationOptions() {
+        return specificationOptions;
+    }
+
+    public void setSpecificationOptions(List<SpecificationOption> specificationOptions) {
+        this.specificationOptions = specificationOptions;
     }
 }

@@ -5,6 +5,7 @@ import com.shuidi.cache.CacheSelect;
 import com.shuidi.cache.CacheUpdate;
 import com.shuidi.cache.DataCacheType;
 import com.shuidi.zhanggui.service.dal.ShopDao;
+import com.shuidi.zhanggui.service.dal.entity.Position;
 import com.shuidi.zhanggui.service.dal.entity.Shop;
 import com.shuidi.zhanggui.service.dal.mappers.ShopMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,18 @@ public class ShopDaoImpl implements ShopDao {
   private ShopMapper shopMapper;
 
   @Override
-  @CacheSelect(clearCache = true,listener = Shop.class)
+  @CacheSelect(clearCache = true,
+      listener = Shop.class,
+      cachePojo = true)
   public Shop getShop(Long id) {
     return shopMapper.getShop(id);
   }
 
   @Override
-  @CacheSelect(clearCache = true,listener = Shop.class)
+  @CacheSelect(dataType = DataCacheType.list,
+      cachePojo = true,
+      clearCache = true,
+      listener = {Shop.class, Position.class})
   public List<Shop> findShops(Map map) {
     return shopMapper.findShops(map);
   }
@@ -39,7 +45,9 @@ public class ShopDaoImpl implements ShopDao {
   }
 
   @Override
-  @CacheUpdate(dataType = DataCacheType.pojo,clearCache = true,listener = Shop.class)
+  @CacheUpdate(dataType = DataCacheType.pojo,
+      clearCache = true,
+      listener = {Shop.class, Position.class})
   public Long updateShop(Shop shop) {
     return shopMapper.updateShop(shop);
   }
