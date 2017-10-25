@@ -45,10 +45,14 @@ public class Goods implements Serializable {
      */
     private String categoryId;
 
+    private Category category;
+
     /**
      * 品牌id.
      */
     private Long brandId;
+
+    private Brand brand;
 
     public Long getId() {
         return id;
@@ -104,5 +108,21 @@ public class Goods implements Serializable {
 
     public void setBrandId(Long brandId) {
         this.brandId = brandId;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

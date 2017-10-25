@@ -22,5 +22,9 @@ public @interface CacheSelect {
 
   public boolean clearCache() default false;
 
+  public boolean cachePojo() default false;
+
+  public String keyField() default "id";
+
   public Class[] listener() default {};
 }

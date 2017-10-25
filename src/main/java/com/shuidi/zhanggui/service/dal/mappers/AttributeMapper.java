@@ -2,6 +2,7 @@ package com.shuidi.zhanggui.service.dal.mappers;
 
 import com.shuidi.zhanggui.service.dal.entity.Attribute;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ public interface AttributeMapper {
    * @param id id
    * @return 查找结果
    */
+  @Select("select * from attribute where id={#id}")
   public Attribute getById(Long id);
 
   /**

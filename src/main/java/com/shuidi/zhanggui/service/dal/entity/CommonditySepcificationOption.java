@@ -28,6 +28,10 @@ public class CommonditySepcificationOption implements Serializable {
      * 商品规格设置id.
      */
     private Long specificationOptionId;
+    /**
+     * 商品规格.
+     */
+    private Long specificationId;
 
     public Long getId() {
         return id;

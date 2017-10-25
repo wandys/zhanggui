@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.service.dal.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Describe : 商品表.
@@ -40,6 +41,18 @@ public class Commodity implements Serializable {
      */
     private Long goodsId;
 
+    private Goods goods;
+
+    /**
+     *  商品的属性列表.
+     */
+    private List<CommmodityAttributeOption> commmodityAttributeOptions;
+
+    /**
+     *  商品的规格列表.
+     */
+    private List<CommonditySepcificationOption> commonditySepcificationOptions;
+
     /**
      * 价格id.
      */
@@ -53,6 +66,7 @@ public class Commodity implements Serializable {
      * 售价.
      */
     private Integer sellingPrice;
+
 
     public Long getId() {
         return id;
@@ -116,5 +130,13 @@ public class Commodity implements Serializable {
 
     public void setSellingPrice(Integer sellingPrice) {
         this.sellingPrice = sellingPrice;
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
     }
 }

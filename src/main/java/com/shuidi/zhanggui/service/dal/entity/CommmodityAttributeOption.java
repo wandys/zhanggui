@@ -27,7 +27,13 @@ public class CommmodityAttributeOption implements Serializable{
     /**
      * 属性设置id.
      */
+    private Long attributeId;
+        /**
+     * 属性设置id.
+     */
     private Long attributeOptionId;
+
+
 
     public Long getId() {
         return id;
@@ -51,5 +57,13 @@ public class CommmodityAttributeOption implements Serializable{
 
     public void setAttributeOptionId(Long attributeOptionId) {
         this.attributeOptionId = attributeOptionId;
+    }
+
+    public Long getAttributeId() {
+        return attributeId;
+    }
+
+    public void setAttributeId(Long attributeId) {
+        this.attributeId = attributeId;
     }
 }

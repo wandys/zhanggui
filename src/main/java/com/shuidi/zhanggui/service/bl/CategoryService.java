@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by wandy on 2017-05-08.
  */
-public interface CategoryService{
+public interface CategoryService {
  /**
   * 通过id查找.
   *

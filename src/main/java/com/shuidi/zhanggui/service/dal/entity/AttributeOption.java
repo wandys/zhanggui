@@ -34,6 +34,7 @@ public class AttributeOption implements Serializable {
      */
     private Long attributeId;
 
+
     public Long getId() {
         return id;
     }
@@ -65,4 +66,6 @@ public class AttributeOption implements Serializable {
     public void setAttributeId(Long attributeId) {
         this.attributeId = attributeId;
     }
+
+
 }

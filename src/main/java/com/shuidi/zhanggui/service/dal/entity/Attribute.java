@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.service.dal.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Describe : 属性信息.
@@ -34,6 +35,16 @@ public class Attribute implements Serializable {
      */
     private Long categoryId;
 
+    /**
+     * 属性分类.
+     */
+    private Category category;
+
+    /**
+     * 属性的设置值.
+     */
+    private List<AttributeOption> attributeOptions;
+
     public Long getId() {
         return id;
     }
@@ -64,6 +75,22 @@ public class Attribute implements Serializable {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<AttributeOption> getAttributeOptions() {
+        return attributeOptions;
+    }
+
+    public void setAttributeOptions(List<AttributeOption> attributeOptions) {
+        this.attributeOptions = attributeOptions;
     }
 }
 
