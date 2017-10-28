@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.shuidi.zhanggui.service.dal.mappers.SpecificationGroupMapper">
+    <resultMap id="result" type="com.shuidi.zhanggui.service.dal.entity.SpecificationGroup">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+    <sql id="selectParam">
+        id,
+        name
+    </sql>
+
+    <select id="getById" resultType="com.shuidi.zhanggui.service.dal.entity.SpecificationGroup">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+        specification_group
+        WHERE
+          id = #{id}
+    </select>
+    <select id="findList" parameterType="java.util.Map" resultMap="result">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+        specification_group
+        <where>
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="name!=null">
+                AND name LIKE concat('%',#{name},'%')
+            </if>
+        </where>
+
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.shuidi.zhanggui.service.dal.entity.SpecificationGroup">
+        INSERT INTO
+            specification_group(
+                name
+              )
+        VALUES (
+          #{name}
+        );
+    </insert>
+    <update id="update" parameterType="com.shuidi.zhanggui.service.dal.entity.SpecificationGroup">
+        UPDATE
+        specification_group
+        <set>
+            <if test="name!=null">
+                 name =#{name}
+            </if>
+        </set>
+        WHERE
+          id = #{id}
+    </update>
+</mapper>

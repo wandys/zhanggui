@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Create Time 2017-07-31.
  * Change Time 2017-07-31 12:33.
  */
-public class CommmodityAttributeOption implements Serializable{
+public class CommodityAttributeOption implements Serializable{
 
     private static final long serialVersionUID = 8491109535266845170L;
     /**
@@ -22,7 +22,7 @@ public class CommmodityAttributeOption implements Serializable{
     /**
      * 商品id.
      */
-    private Long CommodityId;
+    private Long commodityId;
 
     /**
      * 属性设置id.
@@ -44,11 +44,11 @@ public class CommmodityAttributeOption implements Serializable{
     }
 
     public Long getCommodityId() {
-        return CommodityId;
+        return commodityId;
     }
 
     public void setCommodityId(Long commodityId) {
-        CommodityId = commodityId;
+        this.commodityId = commodityId;
     }
 
     public Long getAttributeOptionId() {

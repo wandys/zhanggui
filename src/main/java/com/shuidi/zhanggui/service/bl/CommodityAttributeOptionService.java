@@ -1,7 +1,7 @@
 package com.shuidi.zhanggui.service.bl;
 
 
-import com.shuidi.zhanggui.service.dal.entity.CommmodityAttributeOption;
+import com.shuidi.zhanggui.service.dal.entity.CommodityAttributeOption;
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +16,7 @@ public interface CommodityAttributeOptionService {
   * @param id id
   * @return 查找结果
   */
- public CommmodityAttributeOption getById(Long id);
+ public CommodityAttributeOption getById(Long id);
 
  /**
   * 查找列表.
@@ -24,7 +24,7 @@ public interface CommodityAttributeOptionService {
   * @param params 查找条件
   * @return 列表结果
   */
- public List<CommmodityAttributeOption> findList(Map params);
+ public List<CommodityAttributeOption> findList(Map params);
 
  /**
   * 插入新的数据.
@@ -32,7 +32,7 @@ public interface CommodityAttributeOptionService {
   * @param t 新数据
   * @return 影响行数
   */
- public int insertCommmodityAttributeOption(CommmodityAttributeOption t);
+ public int insertCommmodityAttributeOption(CommodityAttributeOption t);
 
  /**
   * 更新数据.
@@ -40,6 +40,6 @@ public interface CommodityAttributeOptionService {
   * @param t 待更新数据.
   * @return 更新结果
   */
- public int updateCommmodityAttributeOption(CommmodityAttributeOption t);
+ public int updateCommmodityAttributeOption(CommodityAttributeOption t);
 
  }

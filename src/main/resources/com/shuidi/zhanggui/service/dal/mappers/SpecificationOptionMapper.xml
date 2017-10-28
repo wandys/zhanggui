@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.shuidi.zhanggui.service.dal.mappers.SpecificationOptionMapper">
+    <resultMap id="result" type="com.shuidi.zhanggui.service.dal.entity.SpecificationOption">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="option" property="option"/>
+        <result column="specification_id" property="specificationId"/>
+    </resultMap>
+    <sql id="selectParam">
+        id,
+        option,
+        specification_id,
+        name
+    </sql>
+
+    <select id="getById" resultType="com.shuidi.zhanggui.service.dal.entity.SpecificationOption">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+        specification_option
+        WHERE
+          id = #{id}
+    </select>
+    <select id="findList" parameterType="java.util.Map" resultMap="result">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+        specification_option
+        <where>
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="option!=null">
+                AND option = #{option}
+            </if>
+            <if test="specificationId!=null">
+                AND specification_id = #{specificationId}
+            </if>
+            <if test="name!=null">
+                AND name LIKE concat('%',#{name},'%')
+            </if>
+        </where>
+
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.shuidi.zhanggui.service.dal.entity.SpecificationOption">
+        INSERT INTO
+            specification_option(
+                option,
+                specification_id,
+                name
+              )
+        VALUES (
+          #{option},
+          #{specificationId},
+          #{name}
+        );
+    </insert>
+    <update id="update" parameterType="com.shuidi.zhanggui.service.dal.entity.SpecificationOption">
+        UPDATE
+        specification_option
+        <set>
+            <if test="option!=null">
+                 option = #{option},
+            </if>
+            <if test="specificationId!=null">
+                 specification_id = #{specificationId},
+            </if>
+            <if test="name!=null">
+                 name =#{name}
+            </if>
+        </set>
+        WHERE
+          id = #{id}
+    </update>
+</mapper>

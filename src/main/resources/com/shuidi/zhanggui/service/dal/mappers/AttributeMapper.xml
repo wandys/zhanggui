@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.shuidi.zhanggui.service.dal.mappers.AttributeMapper">
+    <resultMap id="result" type="com.shuidi.zhanggui.service.dal.entity.Attribute">
+        <id column="id" property="id"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+    </resultMap>
+    <sql id="selectParam">
+        id,
+        category_id,
+        name,
+        description
+    </sql>
+
+    <select id="getById" resultType="com.shuidi.zhanggui.service.dal.entity.Attribute">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+            attribute
+        WHERE
+          id = #{id}
+    </select>
+    <select id="findList" parameterType="java.util.Map" resultMap="result">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+          attribute
+        <where>
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="name!=null">
+                AND name LIKE concat('%',#{name},'%')
+            </if>
+            <if test="category_id !=null">
+                AND category_id = #{category_id}
+            </if>
+        </where>
+
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.shuidi.zhanggui.service.dal.entity.Attribute">
+        INSERT INTO
+            attribute(
+              category_id,
+              name,
+              description
+              )
+        VALUES (
+          #{categoryId},
+          #{name},
+          #{description}
+        );
+    </insert>
+    <update id="update" parameterType="com.shuidi.zhanggui.service.dal.entity.Attribute">
+        UPDATE
+          attribute
+        SET
+          name = #{name},
+          category_id = #{categoryId},
+          description=#{description}
+        WHERE
+          id = #{id}
+    </update>
+</mapper>

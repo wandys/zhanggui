@@ -1,0 +1,147 @@
+
+#USER 库
+CREATE TABLE uc_user
+(
+  id int(11) PRIMARY KEY NOT NULL COMMENT '唯一索引id' AUTO_INCREMENT,
+  name varchar(20) COMMENT '用户名称',
+  phone varchar(15) COMMENT '电话号码',
+  status varchar(10) COMMENT '用户状态',
+  password varchar(45) COMMENT '密码',
+  create_time datetime COMMENT '注册时间',
+  update_time datetime COMMENT '更新时间',
+  last_login_time varchar(45) COMMENT '最后登录时间',
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC)
+);
+
+#zhanggui 库
+CREATE TABLE brand
+(
+  id bigint(20) PRIMARY KEY NOT NULL COMMENT '自增主键' AUTO_INCREMENT,
+  brand_no varchar(45) COMMENT '品牌编号',
+  brand_name varchar(45) COMMENT '品牌名称',
+  description varchar(200) COMMENT '品牌描述',
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC)
+);
+
+CREATE TABLE shop
+(
+  id int(20) unsigned PRIMARY KEY NOT NULL COMMENT '主键id' AUTO_INCREMENT,
+  name varchar(45) COMMENT '店铺名称',
+  position_id int(11) COMMENT '店铺地址信息',
+  logo_image varchar(45) COMMENT '图片地址',
+  user_id int(20) COMMENT '所属用户id',
+  create_time datetime COMMENT '创建时间',
+  update_time datetime COMMENT '更新时间',
+  operate_id bigint(20),
+  status varchar(45),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC)
+);
+
+CREATE TABLE country_area
+(
+  id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  area_no varchar(45),
+  name varchar(45),
+  pNo varchar(45),
+  pInfos varchar(45),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC)
+);
+
+CREATE TABLE position
+(
+  id int(10) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT '索引id',
+  address varchar(100) COMMENT '文字地址',
+  position varchar(45) COMMENT '坐标x,y(经纬度)',
+  positioncol varchar(45),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC)
+);
+
+CREATE TABLE `attribute` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL ,
+  `description` VARCHAR(500) ,
+  `category_id` BIGINT NULL ,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `categoryId` (`category_id` ASC));
+
+CREATE TABLE `attribute_option` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL COMMENT '名称',
+  `option` VARCHAR(45) NULL,
+  `attribute_id` BIGINT NULL COMMENT '属性id',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `attributeId` (`attribute_id` ASC));
+
+CREATE TABLE `category` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `categroy_name` VARCHAR(50) NULL COMMENT '名称',
+  `categroy_no` VARCHAR(45) NULL COMMENT '分类编号',
+  `description` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+CREATE TABLE `commodity_attribute_option` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `commodity_id` BIGINT NULL COMMENT '商品id',
+  `attribute_id` BIGINT NULL COMMENT '属性id',
+  `attribute_option_id` BIGINT NULL COMMENT '属性设置id',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `commodityId` (`commodity_id` ASC),
+  INDEX `attributeId` (`attribute_id` ASC),
+  INDEX `attributeOptionId` (`attribute_option_id` ASC));
+
+CREATE TABLE `commondity_sepcification_option` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `commodity_id` BIGINT NULL COMMENT '商品id',
+  `sepcification_id` BIGINT NULL COMMENT '规格id',
+  `specification_option_id` BIGINT NULL COMMENT '规格设置id',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `commodity` (`commodity_id` ASC),
+  INDEX `specificatioId` (`sepcification_id` ASC),
+  INDEX `specificationOptionId` (`specification_option_id` ASC));
+
+CREATE TABLE `goods` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NULL,
+  `goods_no` VARCHAR(45) NULL,
+  `description` VARCHAR(500) NULL,
+  `detail` VARCHAR(1000) NULL,
+  `category_id` BIGINT NULL,
+  `brand_id` BIGINT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `categoryId` (`category_id` ASC),
+  INDEX `brandId` (`brand_id` ASC));
+
+CREATE TABLE `specification_group` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+CREATE TABLE `specification_option` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NULL,
+  `option` VARCHAR(45) NULL,
+  `specification_id` BIGINT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `specificationId` (`specification_id` ASC));
+
+CREATE TABLE `specifications` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NULL,
+  `spec_group_id` BIGINT NULL COMMENT '属性分组id',
+  `category_id` BIGINT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `specGroupId` (`spec_group_id` ASC),
+  INDEX `categoryId` (`category_id` ASC));
+
+
+
+

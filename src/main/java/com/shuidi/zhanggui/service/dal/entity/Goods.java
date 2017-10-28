@@ -23,7 +23,7 @@ public class Goods implements Serializable {
     /**
      * 货品名称.
      */
-    private String goodsName;
+    private String name;
 
     /**
      * 货品编号，等同于SPU.
@@ -43,7 +43,7 @@ public class Goods implements Serializable {
     /**
      * 货品分类id.
      */
-    private String categoryId;
+    private Long categoryId;
 
     private Category category;
 
@@ -62,12 +62,12 @@ public class Goods implements Serializable {
         this.id = id;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public String getName() {
+        return name;
     }
 
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getGoodsNo() {
@@ -94,11 +94,11 @@ public class Goods implements Serializable {
         this.detail = detail;
     }
 
-    public String getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(String categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 

@@ -56,4 +56,12 @@ public class CommonditySepcificationOption implements Serializable {
     public void setSpecificationOptionId(Long specificationOptionId) {
         this.specificationOptionId = specificationOptionId;
     }
+
+    public Long getSpecificationId() {
+        return specificationId;
+    }
+
+    public void setSpecificationId(Long specificationId) {
+        this.specificationId = specificationId;
+    }
 }

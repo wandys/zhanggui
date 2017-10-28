@@ -46,7 +46,7 @@ public class Commodity implements Serializable {
     /**
      *  商品的属性列表.
      */
-    private List<CommmodityAttributeOption> commmodityAttributeOptions;
+    private List<CommodityAttributeOption> commmodityAttributeOptions;
 
     /**
      *  商品的规格列表.

@@ -38,7 +38,7 @@
                 AND brand_no = #{branNo}
             </if>
     </select>
-    <insert id="insert" parameterType="com.shuidi.zhanggui.service.dal.entity.Brand">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.shuidi.zhanggui.service.dal.entity.Brand">
         INSERT INTO
             brand(brand_no,
                   brand_name,

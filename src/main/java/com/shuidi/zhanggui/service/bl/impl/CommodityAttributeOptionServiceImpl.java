@@ -2,7 +2,7 @@ package com.shuidi.zhanggui.service.bl.impl;
 
 import com.shuidi.zhanggui.service.bl.CommodityAttributeOptionService;
 import com.shuidi.zhanggui.service.dal.CommodityAttributeOptionDao;
-import com.shuidi.zhanggui.service.dal.entity.CommmodityAttributeOption;
+import com.shuidi.zhanggui.service.dal.entity.CommodityAttributeOption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,22 +18,22 @@ public class CommodityAttributeOptionServiceImpl implements CommodityAttributeOp
   private CommodityAttributeOptionDao commodityAttributeOptionDao;
 
   @Override
-  public CommmodityAttributeOption getById(Long id) {
+  public CommodityAttributeOption getById(Long id) {
     return commodityAttributeOptionDao.getById(id);
   }
 
   @Override
-  public List<CommmodityAttributeOption> findList(Map params) {
+  public List<CommodityAttributeOption> findList(Map params) {
     return commodityAttributeOptionDao.findList(params);
   }
 
   @Override
-  public int insertCommmodityAttributeOption(CommmodityAttributeOption t) {
+  public int insertCommmodityAttributeOption(CommodityAttributeOption t) {
     return commodityAttributeOptionDao.insertCommmodityAttributeOption(t);
   }
 
   @Override
-  public int updateCommmodityAttributeOption(CommmodityAttributeOption t) {
+  public int updateCommmodityAttributeOption(CommodityAttributeOption t) {
     return commodityAttributeOptionDao.updateCommmodityAttributeOption(t);
   }
 }

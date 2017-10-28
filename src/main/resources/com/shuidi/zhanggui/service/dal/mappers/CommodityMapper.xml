@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.shuidi.zhanggui.service.dal.mappers.CommodityMapper">
+    <resultMap id="result" type="com.shuidi.zhanggui.service.dal.entity.Commodity">
+        <id column="id" property="id"/>
+        <result column="sku" property="sku"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="price_id" property="priceId"/>
+        <result column="cost_price" property="costPrice"/>
+        <result column="selling_price" property="costPrice"/>
+    </resultMap>
+    <sql id="selectParam">
+        id,
+        sku,
+        name,
+        goods_id,
+        price_id,
+        cost_price,
+        selling_price,
+        description
+    </sql>
+
+    <select id="getById" resultType="com.shuidi.zhanggui.service.dal.entity.Commodity">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+          commodity
+        WHERE
+          id = #{id}
+    </select>
+    <select id="findList" parameterType="java.util.Map" resultMap="result">
+        SELECT
+          <include refid="selectParam"></include>
+        FROM
+          commodity
+        <where>
+            <if test="goodsId!=null">
+                AND goods_id = #{goodsId}
+            </if>
+            <if test="name!=null">
+                AND name LIKE concat('%',#{name},'%')
+            </if>
+            <if test="sku !=null">
+                AND sku = #{sku}
+            </if>
+            <if test="price_id !=null">
+                AND price_id = #{priceId}
+            </if>
+            <if test="costPrice !=null">
+                AND cost_price = #{costPrice}
+            </if>
+            <if test="sellingPrice !=null">
+                AND selling_price = #{sellingPrice}
+            </if>
+        </where>
+
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.shuidi.zhanggui.service.dal.entity.Commodity">
+        INSERT INTO
+            commodity(
+                sku,
+                name,
+                goods_id,
+                price_id,
+                cost_price,
+                selling_price,
+                description
+              )
+        VALUES (
+          #{sku},
+          #{name},
+          #{goodsId},
+          #{priceId},
+          #{costPrice},
+          #{sellingPrice},
+          #{description}
+        );
+    </insert>
+    <update id="update" parameterType="com.shuidi.zhanggui.service.dal.entity.Commodity">
+        UPDATE
+          commodity
+        <set>
+            <if test="name!=null">
+                 name =#{name},
+            </if>
+            <if test="price_id !=null">
+                 price_id = #{priceId},
+            </if>
+            <if test="costPrice !=null">
+                 cost_price = #{costPrice},
+            </if>
+            <if test="sellingPrice !=null">
+                 selling_price = #{sellingPrice},
+            </if>
+        </set>
+        WHERE
+          id = #{id}
+    </update>
+</mapper>
