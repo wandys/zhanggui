@@ -1,0 +1,1 @@
+INSERT INTO uc_user (name, phone, status, password, create_time, update_time, last_login_time) VALUES ('wandy', '13000000000', 'ENABLED', 'b350c9a3ccdd67901abc6fdde50eaca6', '2017-07-03 23:42:15', '2017-07-03 23:42:15', '2017-07-03 23:42:15');
