@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.service.dal.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Describe :货品表.
@@ -53,6 +54,8 @@ public class Goods implements Serializable {
     private Long brandId;
 
     private Brand brand;
+
+    private List<Commodity> commodities;
 
     public Long getId() {
         return id;
@@ -124,5 +127,13 @@ public class Goods implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Commodity> getCommodities() {
+        return commodities;
+    }
+
+    public void setCommodities(List<Commodity> commodities) {
+        this.commodities = commodities;
     }
 }

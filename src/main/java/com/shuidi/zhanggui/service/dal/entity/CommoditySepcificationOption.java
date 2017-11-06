@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Create Time 2017-07-31.
  * Change Time 2017-07-31 19:41.
  */
-public class CommonditySepcificationOption implements Serializable {
+public class CommoditySepcificationOption implements Serializable {
 
     private static final long serialVersionUID = 837696134535779822L;
     /**

@@ -34,6 +34,8 @@ public interface CategoryDao {
    */
   public int insertCategory(Category t);
 
+  public int insertCategorys(List<Category> categories);
+
   /**
    * 更新数据.
    *

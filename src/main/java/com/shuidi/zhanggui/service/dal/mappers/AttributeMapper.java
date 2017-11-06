@@ -18,7 +18,7 @@ public interface AttributeMapper {
    * @param id id
    * @return 查找结果
    */
-  @Select("select * from attribute where id=#{id}")
+  //@Select("select * from attribute where id=#{id}")
   public Attribute getById(Long id);
 
   /**

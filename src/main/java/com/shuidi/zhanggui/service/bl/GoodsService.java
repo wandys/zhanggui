@@ -5,6 +5,8 @@ import com.shuidi.zhanggui.service.dal.entity.Goods;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by wandy on 2017-05-08.
@@ -16,7 +18,7 @@ public interface GoodsService {
   * @param id id
   * @return 查找结果
   */
- public Goods getById(Long id);
+ public Goods getById(Long id) throws ExecutionException, InterruptedException, TimeoutException;
 
  /**
   * 查找列表.
@@ -24,7 +26,7 @@ public interface GoodsService {
   * @param params 查找条件
   * @return 列表结果
   */
- public List<Goods> findGoodsList(Map params);
+ public List<Goods> findGoodsList(Map params) throws ExecutionException, InterruptedException, TimeoutException;
 
  /**
   * 插入新的数据.

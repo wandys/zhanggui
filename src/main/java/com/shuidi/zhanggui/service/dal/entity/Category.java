@@ -34,6 +34,10 @@ public class Category implements Serializable {
      */
     private String description;
 
+    private Long firstCategoryId;
+
+    private Long secondCategoryId;
+
     public Long getId() {
         return id;
     }
@@ -64,5 +68,21 @@ public class Category implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getFirstCategoryId() {
+        return firstCategoryId;
+    }
+
+    public void setFirstCategoryId(Long firstCategoryId) {
+        this.firstCategoryId = firstCategoryId;
+    }
+
+    public Long getSecondCategoryId() {
+        return secondCategoryId;
+    }
+
+    public void setSecondCategoryId(Long secondCategoryId) {
+        this.secondCategoryId = secondCategoryId;
     }
 }

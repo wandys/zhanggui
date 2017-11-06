@@ -2,7 +2,7 @@ package com.shuidi.zhanggui.service.dal.impl;
 
 
 import com.shuidi.zhanggui.service.dal.CommoditySepcificationOptionDao;
-import com.shuidi.zhanggui.service.dal.entity.CommonditySepcificationOption;
+import com.shuidi.zhanggui.service.dal.entity.CommoditySepcificationOption;
 import com.shuidi.zhanggui.service.dal.mappers.CommoditySepcificationOptionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,22 +20,22 @@ public class CommoditySepcificationOptionDaoImpl implements CommoditySepcificati
     private CommoditySepcificationOptionMapper commoditySepcificationOptionMapper;
 
     @Override
-    public CommonditySepcificationOption getById(Long id) {
+    public CommoditySepcificationOption getById(Long id) {
         return commoditySepcificationOptionMapper.getById(id);
     }
 
     @Override
-    public List<CommonditySepcificationOption> findList(Map params) {
+    public List<CommoditySepcificationOption> findList(Map params) {
         return commoditySepcificationOptionMapper.findList(params);
     }
 
     @Override
-    public int insertCommonditySepcificationOption(CommonditySepcificationOption commonditySepcificationOption) {
-        return commoditySepcificationOptionMapper.insertCommonditySepcificationOption(commonditySepcificationOption);
+    public int insertCommonditySepcificationOption(CommoditySepcificationOption commoditySepcificationOption) {
+        return commoditySepcificationOptionMapper.insert(commoditySepcificationOption);
     }
 
     @Override
-    public int updateCommonditySepcificationOption(CommonditySepcificationOption commonditySepcificationOption) {
-        return commoditySepcificationOptionMapper.updateCommonditySepcificationOption(commonditySepcificationOption);
+    public int updateCommonditySepcificationOption(CommoditySepcificationOption commoditySepcificationOption) {
+        return commoditySepcificationOptionMapper.update(commoditySepcificationOption);
     }
 }

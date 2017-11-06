@@ -10,7 +10,7 @@
         <result column="goods_id" property="goodsId"/>
         <result column="price_id" property="priceId"/>
         <result column="cost_price" property="costPrice"/>
-        <result column="selling_price" property="costPrice"/>
+        <result column="selling_price" property="sellingPrice"/>
     </resultMap>
     <sql id="selectParam">
         id,

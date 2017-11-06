@@ -26,16 +26,16 @@ public class CommodityDaoImpl implements CommodityDao {
 
     @Override
     public List<Commodity> findCommodityList(Map params) {
-        return commodityMapper.findCommodityList(params);
+        return commodityMapper.findList(params);
     }
 
     @Override
     public int insertCommodity(Commodity commodity) {
-        return commodityMapper.insertCommodity(commodity);
+        return commodityMapper.insert(commodity);
     }
 
     @Override
     public int updateCommodity(Commodity commodity) {
-        return commodityMapper.updateCommodity(commodity);
+        return commodityMapper.update(commodity);
     }
 }

@@ -33,6 +33,11 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
+  public int insertCategorys(List<Category> categories) {
+    return categoryDao.insertCategorys(categories);
+  }
+
+  @Override
   public int updateCategory(Category t) {
     return categoryDao.updateCategory(t);
   }

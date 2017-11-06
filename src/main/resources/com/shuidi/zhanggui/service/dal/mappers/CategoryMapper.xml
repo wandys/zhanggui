@@ -6,12 +6,16 @@
         <id column="id" property="id"/>
         <result column="category_no" property="categoryNo"/>
         <result column="categroy_name" property="categroyName"/>
+        <result column="first_category_id" property="firstCategoryId"/>
+        <result column="second_category_id" property="secondCategoryId"/>
         <result column="description" property="description"/>
     </resultMap>
     <sql id="selectParam">
         id,
         category_no,
         categroy_name,
+        first_category_id,
+        second_category_id,
         description
     </sql>
 
@@ -46,11 +50,15 @@
             category(
               category_no,
               categroy_name,
+              first_category_id,
+              second_category_id,
               description
               )
         VALUES (
           #{categoryNo},
           #{categroyName},
+          #{firstCategoryId},
+          #{secondCategoryId},
           #{description}
         );
     </insert>
@@ -72,4 +80,26 @@
         WHERE
           id = #{id}
     </update>
+
+    <insert id="insertCategorys" parameterType="java.util.List">
+        INSERT INTO
+        category(
+            category_no,
+            categroy_name,
+            first_category_id,
+            second_category_id,
+            description
+        )
+        VALUES
+        <foreach collection="list" item="item" separator="," index="list">
+            (
+            #{item.categoryNo},
+            #{item.categroyName},
+            #{item.firstCategoryId},
+            #{item.secondCategoryId},
+            #{item.description}
+            )
+        </foreach>
+        ;
+    </insert>
 </mapper>

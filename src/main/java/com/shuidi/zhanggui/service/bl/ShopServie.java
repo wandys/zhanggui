@@ -4,6 +4,8 @@ import com.shuidi.zhanggui.service.dal.entity.Shop;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 public interface ShopServie {
   /**
@@ -12,7 +14,7 @@ public interface ShopServie {
    * @param id            - 唯一索引id，自增
    * @return Shop         - 店铺信息
    */
-  public Shop getShop(Long id);
+  public Shop getShop(Long id) throws InterruptedException, ExecutionException, TimeoutException;
 
   /**
    * 获取店铺的列表.

@@ -51,7 +51,7 @@ public class Commodity implements Serializable {
     /**
      *  商品的规格列表.
      */
-    private List<CommonditySepcificationOption> commonditySepcificationOptions;
+    private List<CommoditySepcificationOption> commoditySepcificationOptions;
 
     /**
      * 价格id.
@@ -138,5 +138,21 @@ public class Commodity implements Serializable {
 
     public void setGoods(Goods goods) {
         this.goods = goods;
+    }
+
+    public List<CommodityAttributeOption> getCommmodityAttributeOptions() {
+        return commmodityAttributeOptions;
+    }
+
+    public void setCommmodityAttributeOptions(List<CommodityAttributeOption> commmodityAttributeOptions) {
+        this.commmodityAttributeOptions = commmodityAttributeOptions;
+    }
+
+    public List<CommoditySepcificationOption> getCommoditySepcificationOptions() {
+        return commoditySepcificationOptions;
+    }
+
+    public void setCommoditySepcificationOptions(List<CommoditySepcificationOption> commoditySepcificationOptions) {
+        this.commoditySepcificationOptions = commoditySepcificationOptions;
     }
 }

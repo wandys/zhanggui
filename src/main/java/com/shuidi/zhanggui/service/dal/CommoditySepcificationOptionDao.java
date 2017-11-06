@@ -1,6 +1,6 @@
 package com.shuidi.zhanggui.service.dal;
 
-import com.shuidi.zhanggui.service.dal.entity.CommonditySepcificationOption;
+import com.shuidi.zhanggui.service.dal.entity.CommoditySepcificationOption;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +22,7 @@ public interface CommoditySepcificationOptionDao {
    * @param id id
    * @return 查找结果
    */
-  public CommonditySepcificationOption getById(Long id);
+  public CommoditySepcificationOption getById(Long id);
 
   /**
    * 查找列表.
@@ -30,7 +30,7 @@ public interface CommoditySepcificationOptionDao {
    * @param params 查找条件
    * @return 列表结果
    */
-  public List<CommonditySepcificationOption> findList(Map params);
+  public List<CommoditySepcificationOption> findList(Map params);
 
   /**
    * 插入新的数据.
@@ -38,7 +38,7 @@ public interface CommoditySepcificationOptionDao {
    * @param t 新数据
    * @return 影响行数
    */
-  public int insertCommonditySepcificationOption(CommonditySepcificationOption t);
+  public int insertCommonditySepcificationOption(CommoditySepcificationOption t);
 
   /**
    * 更新数据.
@@ -46,5 +46,5 @@ public interface CommoditySepcificationOptionDao {
    * @param t 待更新数据.
    * @return 更新结果
    */
-  public int updateCommonditySepcificationOption(CommonditySepcificationOption t);
+  public int updateCommonditySepcificationOption(CommoditySepcificationOption t);
 }

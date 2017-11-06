@@ -34,6 +34,13 @@ public interface CategoryMapper {
    * @return 影响行数
    */
   public int insertCategory(Category t);
+  /**
+   * 插入新的数据.
+   *
+   * @param categories 新数据
+   * @return 影响行数
+   */
+  public int insertCategorys(List<Category> categories);
 
   /**
    * 更新数据.

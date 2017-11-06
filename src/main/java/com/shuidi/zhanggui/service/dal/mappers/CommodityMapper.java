@@ -31,7 +31,7 @@ public interface CommodityMapper {
    * @param params 查找条件
    * @return 列表结果
    */
-  public List<Commodity> findCommodityList(Map params);
+  public List<Commodity> findList(Map params);
 
   /**
    * 插入新的数据.
@@ -39,7 +39,7 @@ public interface CommodityMapper {
    * @param t 新数据
    * @return 影响行数
    */
-  public int insertCommodity(Commodity t);
+  public int insert(Commodity t);
 
   /**
    * 更新数据.
@@ -47,5 +47,5 @@ public interface CommodityMapper {
    * @param t 待更新数据.
    * @return 更新结果
    */
-  public int updateCommodity(Commodity t);
+  public int update(Commodity t);
 }

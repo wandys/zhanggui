@@ -15,11 +15,11 @@
         description
     </sql>
 
-    <select id="getById" resultType="com.shuidi.zhanggui.service.dal.entity.Brand">
+    <select id="getById" parameterType="java.lang.Long" resultType="com.shuidi.zhanggui.service.dal.entity.Brand">
         SELECT
           <include refid="selectParam"></include>
         FROM
-        brand
+          brand
         WHERE
           id = #{id}
     </select>

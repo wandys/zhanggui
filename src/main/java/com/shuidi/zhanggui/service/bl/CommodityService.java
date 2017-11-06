@@ -5,6 +5,8 @@ import com.shuidi.zhanggui.service.dal.entity.Commodity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by wandy on 2017-05-08.
@@ -16,7 +18,7 @@ public interface CommodityService {
   * @param id id
   * @return 查找结果
   */
- public Commodity getById(Long id);
+ public Commodity getById(Long id) throws InterruptedException, ExecutionException, TimeoutException;
 
  /**
   * 查找列表.
