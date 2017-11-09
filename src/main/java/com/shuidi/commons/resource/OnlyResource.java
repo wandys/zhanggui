@@ -17,6 +17,10 @@ public class OnlyResource extends ResourceSupport implements BaseResource {
 
   private String code;
 
+  public static OnlyResource resource() {
+    return new OnlyResource();
+  }
+
   public State getStatus() {
     return status;
   }

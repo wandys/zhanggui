@@ -1,5 +1,8 @@
 package com.shuidi.zhanggui.service.bl.impl;
 
+import com.shuidi.commons.exception.ServiceException;
+import com.shuidi.commons.utils.CheckUtils;
+import com.shuidi.zhanggui.service.bl.AttributeOptionService;
 import com.shuidi.zhanggui.service.bl.AttributeService;
 import com.shuidi.zhanggui.service.dal.AttributeDao;
 import com.shuidi.zhanggui.service.dal.entity.Attribute;
@@ -16,6 +19,8 @@ public class AttributeServiceImpl implements AttributeService {
 
   @Autowired
   private AttributeDao attributeDao;
+  @Autowired
+  private AttributeOptionService attributeOptionService;
 
   @Override
   public Attribute getById(Long id) {
@@ -28,12 +33,20 @@ public class AttributeServiceImpl implements AttributeService {
   }
 
   @Override
-  public int insertAttribute(Attribute t) {
-    return attributeDao.insertAttribute(t);
+  public Long insertAttribute(Attribute t) {
+    CheckUtils.notNull(t);
+    attributeDao.insertAttribute(t);
+    if (!CheckUtils.isEmpty(t.getAttributeOptions())) {
+      t.getAttributeOptions().forEach(attributeOption -> attributeOption.setAttributeId(t.getId()));
+      attributeOptionService.insertAttributeOptions(t.getAttributeOptions());
+    }
+    return t.getId();
   }
 
   @Override
   public int updateAttribute(Attribute t) {
-    return attributeDao.updateAttribute(t);
+    int size = attributeDao.updateAttribute(t);
+    CheckUtils.greaterThenZero(size);
+    return size;
   }
 }

@@ -36,6 +36,14 @@ public interface SpecificationOptionMapper extends BaseMapper<SpecificationOptio
   public int insertSpecificationOption(SpecificationOption t);
 
   /**
+   * 插入新的数据.
+   *
+   * @param options 新数据
+   * @return 影响行数
+   */
+  public int insertSpecificationOptions(List<SpecificationOption> options);
+
+  /**
    * 更新数据.
    *
    * @param t 待更新数据.

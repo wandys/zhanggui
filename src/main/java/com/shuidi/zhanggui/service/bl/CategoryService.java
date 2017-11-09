@@ -32,7 +32,7 @@ public interface CategoryService {
   * @param t 新数据
   * @return 影响行数
   */
- public int insertCategory(Category t);
+ public Long insertCategory(Category t);
 
 
  /**

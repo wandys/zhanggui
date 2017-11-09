@@ -32,6 +32,11 @@ public class CollectsResource<T> extends ResourceSupport implements BaseResource
     this.data = datas;
   }
 
+  public static <T> CollectsResource resource(T data) {
+
+    return new CollectsResource(data);
+  }
+
   public CollectsResource(List<T> data) {
     this.data = data;
   }

@@ -44,7 +44,7 @@
         </where>
 
     </select>
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.shuidi.zhanggui.service.dal.entity.SpecificationOption">
+    <insert id="insertSpecificationOption" useGeneratedKeys="true" keyProperty="id"  parameterType="com.shuidi.zhanggui.service.dal.entity.SpecificationOption">
         INSERT INTO
             specification_option(
                 option,
@@ -57,7 +57,24 @@
           #{name}
         );
     </insert>
-    <update id="update" parameterType="com.shuidi.zhanggui.service.dal.entity.SpecificationOption">
+    <insert id="insertSpecificationOptions" parameterType="java.util.List">
+        INSERT INTO
+            specification_option(
+                option,
+                specification_id,
+                name
+              )
+        VALUES
+        <foreach collection="list" item="item" separator="," index="list">
+        (
+          #{item.option},
+          #{item.specificationId},
+          #{item.name}
+        )
+      </foreach>
+        ;
+    </insert>
+    <update id="updateSpecificationOption" parameterType="com.shuidi.zhanggui.service.dal.entity.SpecificationOption">
         UPDATE
         specification_option
         <set>

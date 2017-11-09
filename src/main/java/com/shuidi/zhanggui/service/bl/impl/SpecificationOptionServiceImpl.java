@@ -1,5 +1,6 @@
 package com.shuidi.zhanggui.service.bl.impl;
 
+import com.shuidi.commons.utils.CheckUtils;
 import com.shuidi.zhanggui.service.bl.SpecificationOptionService;
 import com.shuidi.zhanggui.service.dal.SpecificationOptionDao;
 import com.shuidi.zhanggui.service.dal.entity.SpecificationOption;
@@ -19,6 +20,7 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
 
   @Override
   public SpecificationOption getById(Long id) {
+
     return specificationOptionDao.getById(id);
   }
 
@@ -28,12 +30,19 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
   }
 
   @Override
-  public int insertSpecificationOption(SpecificationOption t) {
+  public Long insertSpecificationOption(SpecificationOption t) {
+
     return specificationOptionDao.insertSpecificationOption(t);
   }
 
   @Override
+  public int insertSpecificationOption(List<SpecificationOption> options) {
+    return specificationOptionDao.insertSpecificationOption(options);
+  }
+
+  @Override
   public int updateSpecificationOption(SpecificationOption t) {
+
     return specificationOptionDao.updateSpecificationOption(t);
   }
 }

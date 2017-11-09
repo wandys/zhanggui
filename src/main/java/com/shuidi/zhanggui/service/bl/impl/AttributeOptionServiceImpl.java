@@ -1,8 +1,10 @@
 package com.shuidi.zhanggui.service.bl.impl;
 
+import com.shuidi.commons.exception.ServiceException;
 import com.shuidi.zhanggui.service.bl.AttributeOptionService;
 import com.shuidi.zhanggui.service.dal.AttributeOptionDao;
 import com.shuidi.zhanggui.service.dal.entity.AttributeOption;
+import org.apache.commons.lang.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +32,11 @@ public class AttributeOptionServiceImpl implements AttributeOptionService {
   @Override
   public int insertAttributeOption(AttributeOption t) {
     return attributeOptionDao.insertAttributeOption(t);
+  }
+
+  @Override
+  public int insertAttributeOptions(List<AttributeOption> options) {
+    return attributeOptionDao.insertAttributeOptions(options);
   }
 
   @Override

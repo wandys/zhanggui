@@ -36,6 +36,14 @@ public interface AttributeOptionMapper {
   public int insertAttributeOption(AttributeOption t);
 
   /**
+   * 插入新的数据.
+   *
+   * @param options 新数据
+   * @return 影响行数
+   */
+  public int insertAttributeOptions(List<AttributeOption> options);
+
+  /**
    * 更新数据.
    *
    * @param t 待更新数据.

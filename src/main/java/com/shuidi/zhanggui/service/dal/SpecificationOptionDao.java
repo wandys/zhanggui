@@ -32,7 +32,15 @@ public interface SpecificationOptionDao {
    * @param t 新数据
    * @return 影响行数
    */
-  public int insertSpecificationOption(SpecificationOption t);
+  public Long insertSpecificationOption(SpecificationOption t);
+
+  /**
+   * 插入新的数据.
+   *
+   * @param options 新数据
+   * @return 影响行数
+   */
+  public int insertSpecificationOption(List<SpecificationOption> options);
 
   /**
    * 更新数据.

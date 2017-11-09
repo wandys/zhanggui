@@ -78,6 +78,15 @@ public class CategoryServiceImplTest extends ServiceBaseTest {
     categoryService.insertCategorys(countryAreas);
   }
 
+  @Test
+  //@Rollback(false)
+  public void test() {
+    //List<Integer> one = new ArrayList();
+   // List<Integer> two = new ArrayList();
+   // one.stream().
+  }
+
+
   private enum Step {
     first,
     second,

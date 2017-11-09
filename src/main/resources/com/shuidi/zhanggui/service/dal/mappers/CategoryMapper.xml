@@ -42,6 +42,15 @@
             <if test="categoryNo !=null">
                 AND category_no = #{categoryNo}
             </if>
+            <if test="secondCategoryId !=null">
+                AND second_category_id = #{secondCategoryId}
+            </if>
+            <if test="firstCategoryId !=null">
+                AND first_category_id = #{firstCategoryId}
+            </if>
+            <if test="firstDegree !=null">
+                AND first_category_id is NULL ,
+            </if>
         </where>
 
     </select>
@@ -68,6 +77,12 @@
         <set>
             <if test="categroyName!=null">
                 category_no = #{categoryNo},
+            </if>
+            <if test="secondCategoryId !=null">
+                second_category_id = #{secondCategoryId},
+            </if>
+            <if test="firstCategoryId !=null">
+                first_category_id = #{firstCategoryId},
             </if>
             <if test="categoryNo !=null">
                 categroy_name = #{categroyName},

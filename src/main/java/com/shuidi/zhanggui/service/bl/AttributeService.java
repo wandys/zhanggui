@@ -32,7 +32,7 @@ public interface AttributeService {
   * @param t 新数据
   * @return 影响行数
   */
- public int insertAttribute(Attribute t);
+ public Long insertAttribute(Attribute t);
 
  /**
   * 更新数据.

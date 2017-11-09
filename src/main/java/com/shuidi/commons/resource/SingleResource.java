@@ -22,6 +22,11 @@ public class SingleResource<T> extends ResourceSupport implements BaseResource {
     this.data = null;
   }
 
+  public static <T> SingleResource resource(T data) {
+
+    return new SingleResource(data);
+  }
+
   public SingleResource(T data) {
     this.data = data;
   }

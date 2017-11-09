@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.service.dal.impl;
 
 
+import com.shuidi.commons.utils.CheckUtils;
 import com.shuidi.zhanggui.service.dal.SpecificationOptionDao;
 import com.shuidi.zhanggui.service.dal.entity.SpecificationOption;
 import com.shuidi.zhanggui.service.dal.mappers.SpecificationOptionMapper;
@@ -21,6 +22,7 @@ public class SpecificationOptionDaoImpl implements SpecificationOptionDao {
 
     @Override
     public SpecificationOption getById(Long id) {
+        CheckUtils.notNull(id);
         return specificationOptionMapper.getById(id);
     }
 
@@ -30,12 +32,23 @@ public class SpecificationOptionDaoImpl implements SpecificationOptionDao {
     }
 
     @Override
-    public int insertSpecificationOption(SpecificationOption specificationOption) {
-        return specificationOptionMapper.insertSpecificationOption(specificationOption);
+    public Long insertSpecificationOption(SpecificationOption specificationOption) {
+        CheckUtils.notNull(specificationOption);
+        specificationOptionMapper.insertSpecificationOption(specificationOption);
+        return specificationOption.getId();
+    }
+
+    @Override
+    public int insertSpecificationOption(List<SpecificationOption> options) {
+        CheckUtils.notEmpty(options);
+        return specificationOptionMapper.insertSpecificationOptions(options);
     }
 
     @Override
     public int updateSpecificationOption(SpecificationOption specificationOption) {
-        return specificationOptionMapper.updateSpecificationOption(specificationOption);
+        CheckUtils.notNull(specificationOption);
+        int size = specificationOptionMapper.updateSpecificationOption(specificationOption);
+        CheckUtils.greaterThenZero(size);
+        return size;
     }
 }

@@ -1,5 +1,6 @@
 package com.shuidi.zhanggui.service.bl.impl;
 
+import com.shuidi.commons.utils.CheckUtils;
 import com.shuidi.zhanggui.service.bl.BrandService;
 import com.shuidi.zhanggui.service.dal.BrandDao;
 import com.shuidi.zhanggui.service.dal.entity.Brand;
@@ -31,12 +32,15 @@ public class BrandServiceImpl implements BrandService {
   }
 
   @Override
-  public int insertBrand(Brand brand) {
-    return brandDao.insertBrand(brand);
+  public Long insertBrand(Brand brand) {
+    brandDao.insertBrand(brand);
+    return brand.getId();
   }
 
   @Override
   public int updateBrand(Brand brand) {
-    return brandDao.updateBrand(brand);
+    int size = brandDao.updateBrand(brand);
+    CheckUtils.greaterThenZero(size);
+    return size;
   }
 }

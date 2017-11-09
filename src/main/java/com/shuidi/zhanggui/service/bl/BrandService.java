@@ -33,7 +33,7 @@ public interface BrandService{
   * @param t 新数据
   * @return 影响行数
   */
- public int insertBrand(Brand t);
+ public Long insertBrand(Brand t);
 
  /**
   * 更新数据.

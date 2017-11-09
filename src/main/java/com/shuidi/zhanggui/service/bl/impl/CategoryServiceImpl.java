@@ -1,5 +1,7 @@
 package com.shuidi.zhanggui.service.bl.impl;
 
+import com.shuidi.commons.exception.ServiceException;
+import com.shuidi.commons.utils.CheckUtils;
 import com.shuidi.zhanggui.service.bl.CategoryService;
 import com.shuidi.zhanggui.service.dal.CategoryDao;
 import com.shuidi.zhanggui.service.dal.entity.Category;
@@ -28,8 +30,9 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
-  public int insertCategory(Category t) {
-    return categoryDao.insertCategory(t);
+  public Long insertCategory(Category t) {
+    categoryDao.insertCategory(t);
+    return t.getId();
   }
 
   @Override
@@ -39,6 +42,8 @@ public class CategoryServiceImpl implements CategoryService {
 
   @Override
   public int updateCategory(Category t) {
-    return categoryDao.updateCategory(t);
+    int size = categoryDao.updateCategory(t);
+    CheckUtils.greaterThenZero(size);
+    return size;
   }
 }
