@@ -55,7 +55,7 @@ public class GoodsApi {
       throw new CheckedException("id can't be null");
     }
     Goods goods = goodsService.getById(id);
-    Link selfLink = entityLinks.linkToSingleResource(Shop.class, "${id}");
+    Link selfLink = entityLinks.linkToSingleResource(Shop.class, goods.getId());
     SingleResource<JSONObject> resource = new SingleResource(goods);
     resource.add(selfLink);
     return ResponseEntity.ok(resource);
@@ -79,4 +79,22 @@ public class GoodsApi {
     resource.add(selfLink);
     return ResponseEntity.ok(resource);
   }
+  /**
+   * 根据登录用户获取店铺信息.
+   *
+   * @return
+   */
+  @RequestMapping(value = "/new",method = RequestMethod.POST)
+  @ResponseBody
+  public ResponseEntity addGoods(@RequestBody Goods goods) throws InterruptedException, ExecutionException, TimeoutException {
+    if (goods == null) {
+      throw new CheckedException("goods can't be null");
+    }
+    Long goodsiId = goodsService.insertGoods(goods);
+    Link selfLink = entityLinks.linkToSingleResource(Shop.class, goodsiId);
+    SingleResource<JSONObject> resource = new SingleResource(goodsiId);
+    resource.add(selfLink);
+    return ResponseEntity.ok(resource);
+  }
+
 }

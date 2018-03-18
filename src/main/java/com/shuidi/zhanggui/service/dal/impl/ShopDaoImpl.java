@@ -21,9 +21,9 @@ public class ShopDaoImpl implements ShopDao {
   private ShopMapper shopMapper;
 
   @Override
-  @CacheSelect(clearCache = true,
-      listener = Shop.class,
-      cachePojo = true)
+  //@CacheSelect(clearCache = true,
+   //   listener = Shop.class,
+  //    cachePojo = true)
   public Shop getShop(Long id) {
     return shopMapper.getShop(id);
   }

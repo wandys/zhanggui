@@ -73,8 +73,9 @@ public class GoodsServiceImpl implements GoodsService {
   }
 
   @Override
-  public int insertGoods(Goods t) {
-    return goodsDao.insertGoods(t);
+  public Long insertGoods(Goods t) {
+    goodsDao.insertGoods(t);
+    return t.getId();
   }
 
   @Override

@@ -34,7 +34,7 @@ public interface GoodsService {
   * @param t 新数据
   * @return 影响行数
   */
- public int insertGoods(Goods t);
+ public Long insertGoods(Goods t);
 
  /**
   * 更新数据.

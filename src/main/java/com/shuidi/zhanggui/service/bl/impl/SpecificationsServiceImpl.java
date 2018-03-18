@@ -28,7 +28,7 @@ public class SpecificationsServiceImpl implements SpecificationsService {
   }
 
   @Override
-  public int insertSpecifications(Specifications t) {
+  public Long insertSpecifications(Specifications t) {
     return specificationsDao.insertSpecifications(t);
   }
 

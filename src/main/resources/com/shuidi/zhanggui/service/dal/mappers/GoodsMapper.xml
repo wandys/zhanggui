@@ -69,7 +69,7 @@
           #{detail},
           #{categoryId},
           #{brandId},
-          #{description},
+          #{description}
         );
     </insert>
     <update id="update" parameterType="com.shuidi.zhanggui.service.dal.entity.Goods">

@@ -32,7 +32,7 @@ public interface SpecificationsService {
   * @param t 新数据
   * @return 影响行数
   */
- public int insertSpecifications(Specifications t);
+ public Long insertSpecifications(Specifications t);
 
  /**
   * 更新数据.
