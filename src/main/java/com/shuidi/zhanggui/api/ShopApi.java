@@ -1,15 +1,10 @@
 package com.shuidi.zhanggui.api;
 
 import com.shuidi.commons.enums.Status;
-import com.shuidi.commons.exception.ServiceException;
 import com.shuidi.commons.resource.CollectsResource;
 import com.shuidi.commons.resource.OnlyResource;
-import com.shuidi.commons.resource.SingleResource;
 import com.shuidi.uc.api.shiro.LoginTools;
-import com.shuidi.uc.service.dal.entity.UcUser;
-import com.shuidi.zhanggui.service.bl.BrandService;
 import com.shuidi.zhanggui.service.bl.ShopServie;
-import com.shuidi.zhanggui.service.dal.entity.Brand;
 import com.shuidi.zhanggui.service.dal.entity.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
@@ -62,6 +57,7 @@ public class ShopApi {
     List<Shop> shops = shopServie.findShops(searchMap);
     Link selfLink = entityLinks.linkToSingleResource(Shop.class, "${id}");
     CollectsResource<Shop> resource = new CollectsResource(shops);
+
     resource.add(selfLink);
     return ResponseEntity.ok(resource);
   }
