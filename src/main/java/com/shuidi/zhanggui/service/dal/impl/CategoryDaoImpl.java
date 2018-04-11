@@ -1,12 +1,7 @@
 package com.shuidi.zhanggui.service.dal.impl;
 
 
-import com.shuidi.cache.CacheInsert;
-import com.shuidi.cache.CacheSelect;
-import com.shuidi.cache.CacheUpdate;
-import com.shuidi.cache.DataCacheType;
 import com.shuidi.zhanggui.service.dal.CategoryDao;
-import com.shuidi.zhanggui.service.dal.entity.Brand;
 import com.shuidi.zhanggui.service.dal.entity.Category;
 import com.shuidi.zhanggui.service.dal.mappers.CategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,24 +20,24 @@ public class CategoryDaoImpl implements CategoryDao {
     private CategoryMapper categoryMapper;
 
     @Override
-    @CacheSelect(clearCache = true,
+    /*@CacheSelect(clearCache = true,
         listener = Category.class,
-        cachePojo = true)
+        cachePojo = true)*/
     public Category getById(Long id) {
         return categoryMapper.getById(id);
     }
 
     @Override
-    @CacheSelect(dataType = DataCacheType.list,
+    /*@CacheSelect(dataType = DataCacheType.list,
         cachePojo = true,
         clearCache = true,
-        listener = {Category.class})
+        listener = {Category.class})*/
     public List<Category> findCategoryList(Map params) {
         return categoryMapper.findCategoryList(params);
     }
 
     @Override
-    @CacheInsert(dataType = DataCacheType.pojo)
+    //@CacheInsert(dataType = DataCacheType.pojo)
     public int insertCategory(Category category) {
         return categoryMapper.insertCategory(category);
     }
@@ -53,9 +48,9 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    @CacheUpdate(dataType = DataCacheType.pojo,
+    /*@CacheUpdate(dataType = DataCacheType.pojo,
         clearCache = true,
-        listener = {Category.class})
+        listener = {Category.class})*/
     public int updateCategory(Category category) {
         return categoryMapper.updateCategory(category);
     }

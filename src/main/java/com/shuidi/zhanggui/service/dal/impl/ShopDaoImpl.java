@@ -1,11 +1,6 @@
 package com.shuidi.zhanggui.service.dal.impl;
 
-import com.shuidi.cache.CacheInsert;
-import com.shuidi.cache.CacheSelect;
-import com.shuidi.cache.CacheUpdate;
-import com.shuidi.cache.DataCacheType;
 import com.shuidi.zhanggui.service.dal.ShopDao;
-import com.shuidi.zhanggui.service.dal.entity.Position;
 import com.shuidi.zhanggui.service.dal.entity.Shop;
 import com.shuidi.zhanggui.service.dal.mappers.ShopMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,25 +24,25 @@ public class ShopDaoImpl implements ShopDao {
   }
 
   @Override
-  @CacheSelect(dataType = DataCacheType.list,
+ /* @CacheSelect(dataType = DataCacheType.list,
       cachePojo = true,
       clearCache = true,
-      listener = {Shop.class, Position.class})
+      listener = {Shop.class, Position.class})*/
   public List<Shop> findShops(Map map) {
     return shopMapper.findShops(map);
   }
 
   @Override
-  @CacheInsert(dataType = DataCacheType.pojo)
+  //@CacheInsert(dataType = DataCacheType.pojo)
   public Long saveShop(Shop shop) {
     shopMapper.saveShop(shop);
     return shop.getId();
   }
 
   @Override
-  @CacheUpdate(dataType = DataCacheType.pojo,
+  /*@CacheUpdate(dataType = DataCacheType.pojo,
       clearCache = true,
-      listener = {Shop.class, Position.class})
+      listener = {Shop.class, Position.class})*/
   public Long updateShop(Shop shop) {
     return shopMapper.updateShop(shop);
   }

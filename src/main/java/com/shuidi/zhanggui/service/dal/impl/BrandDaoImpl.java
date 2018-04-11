@@ -26,32 +26,32 @@ public class BrandDaoImpl implements BrandDao {
     private BrandMapper brandMapper;
 
     @Override
-    @CacheSelect(clearCache = true,
+    /*@CacheSelect(clearCache = true,
         listener = Brand.class,
-        cachePojo = true)
+        cachePojo = true)*/
     public Brand getById(Long id) {
         return brandMapper.getById(id);
     }
 
     @Override
-    @CacheSelect(dataType = DataCacheType.list,
+    /*@CacheSelect(dataType = DataCacheType.list,
         cachePojo = true,
         clearCache = true,
-        listener = {Brand.class})
+        listener = {Brand.class})*/
     public List<Brand> findBrandList(Map params) {
         return brandMapper.findBrandList(params);
     }
 
     @Override
-    @CacheInsert(dataType = DataCacheType.pojo)
+    //@CacheInsert(dataType = DataCacheType.pojo)
     public int insertBrand(Brand brand) {
         return brandMapper.insertBrand(brand);
     }
 
     @Override
-    @CacheUpdate(dataType = DataCacheType.pojo,
+    /*@CacheUpdate(dataType = DataCacheType.pojo,
         clearCache = true,
-        listener = {Brand.class})
+        listener = {Brand.class})*/
     public int updateBrand(Brand brand) {
         return brandMapper.updateBrand(brand);
     }
