@@ -1,12 +1,6 @@
 package com.shuidi.commons.exception;
 
-import org.apache.tomcat.util.bcel.Const;
-import org.springframework.boot.autoconfigure.web.ErrorController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.boot.web.servlet.error.ErrorController;
 
 /**
  * Created by wandy on 17-8-21.

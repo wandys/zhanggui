@@ -9,12 +9,14 @@ import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.jredis.JredisPool;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by wandy on 17-7-5.
@@ -38,11 +40,15 @@ public class RedisConfig extends CachingConfigurerSupport {
 
   @SuppressWarnings("rawtypes")
   @Bean
-  public CacheManager cacheManager(RedisTemplate redisTemplate) {
-    RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
-    //设置缓存过期时间
-    //rcm.setDefaultExpiration(60);//秒
-    return rcm;
+  public CacheManager cacheManager(JedisConnectionFactory jedisConnectionFactory) {
+    RedisCacheManager.RedisCacheManagerBuilder builder = RedisCacheManager
+        .RedisCacheManagerBuilder
+        .fromConnectionFactory(jedisConnectionFactory);
+    Set cacheNames = new HashSet<String>() {{
+      add("codeNameCache");
+    }};
+    builder.initialCacheNames(cacheNames);
+    return builder.build();
   }
 
   @Bean

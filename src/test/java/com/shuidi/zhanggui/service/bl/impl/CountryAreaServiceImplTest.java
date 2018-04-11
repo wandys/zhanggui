@@ -31,7 +31,7 @@ public class CountryAreaServiceImplTest extends ServiceBaseTest {
   @Test
   //@Rollback(false)
   public void insert() throws Exception {
-    File file = new File("/home/wandy/Desktop/ChinaCountry");
+    /*File file = new File("/home/wandy/Desktop/ChinaCountry");
     Reader reader = new FileReader(file);
     BufferedReader bufferedReader = new BufferedReader(reader);
     String line = "";
@@ -68,7 +68,7 @@ public class CountryAreaServiceImplTest extends ServiceBaseTest {
     }
     countryAreas.forEach(countryArea -> System.out.println("No:" + countryArea.getAreaNo()
         + "   name:" + countryArea.getName() + "  pNO:" + countryArea.getpNo() + "   pInfos:" + countryArea.getpInfos()));
-    countryAreaService.insertAreas(countryAreas);
+    countryAreaService.insertAreas(countryAreas);*/
   }
 
 }

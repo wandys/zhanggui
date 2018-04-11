@@ -33,7 +33,7 @@ public class CategoryServiceImplTest extends ServiceBaseTest {
   @Test
   //@Rollback(false)
   public void insert() throws Exception {
-    File file = new File("/home/wandy/Desktop/分类合集/output.txt");
+    /*File file = new File("/home/wandy/Desktop/分类合集/output.txt");
     Reader reader = new FileReader(file);
     BufferedReader bufferedReader = new BufferedReader(reader);
     String line = "";
@@ -75,7 +75,7 @@ public class CategoryServiceImplTest extends ServiceBaseTest {
     countryAreas.forEach(countryArea -> System.out.println("name:" + countryArea.getCategroyName()
         + "   fistId:" + countryArea.getFirstCategoryId() + "  secondId:" + countryArea.getSecondCategoryId()));
     //countryAreaService.insertAreas(countryAreas);
-    categoryService.insertCategorys(countryAreas);
+    categoryService.insertCategorys(countryAreas);*/
   }
 
   @Test
