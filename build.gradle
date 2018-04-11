@@ -35,6 +35,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-aop:2.0.1.RELEASE')
 	compile('org.springframework.boot:spring-boot-starter-web:2.0.1.RELEASE')
 	compile('org.springframework.boot:spring-boot-starter-data-redis:2.0.1.RELEASE')
+	compile('org.springframework.boot:spring-boot-starter-actuator:2.0.1.RELEASE')
 	compile('c3p0:c3p0:0.9.1.1')
 	compile('org.mybatis:mybatis:3.4.4')
 	compile('com.alibaba:fastjson:1.2.32')
