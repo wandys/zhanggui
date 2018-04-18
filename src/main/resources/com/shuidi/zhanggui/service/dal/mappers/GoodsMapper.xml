@@ -23,18 +23,21 @@
 
     <select id="getById" resultType="com.shuidi.zhanggui.service.dal.entity.Goods">
         SELECT
-          <include refid="selectParam"></include>
+        <include refid="selectParam"></include>
         FROM
-          goods
+        goods
         WHERE
-          id = #{id}
+        id = #{id}
     </select>
     <select id="findList" parameterType="java.util.Map" resultMap="result">
         SELECT
-          <include refid="selectParam"></include>
+        <include refid="selectParam"></include>
         FROM
-          goods
+        goods
         <where>
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
             <if test="goodsNo!=null">
                 AND goods_no = #{goodsNo}
             </if>
@@ -53,7 +56,8 @@
         </where>
 
     </select>
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id"  parameterType="com.shuidi.zhanggui.service.dal.entity.Goods">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.shuidi.zhanggui.service.dal.entity.Goods">
         INSERT INTO
             goods(
                 name,
@@ -77,7 +81,7 @@
         goods
         <set>
             <if test="name!=null">
-                 name =#{name}
+                name =#{name}
             </if>
             <if test="detail !=null">
                 detail = #{detail}
@@ -93,6 +97,6 @@
             </if>
         </set>
         WHERE
-          id = #{id}
+        id = #{id}
     </update>
 </mapper>

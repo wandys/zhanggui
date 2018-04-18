@@ -32,7 +32,7 @@ import java.util.concurrent.TimeoutException;
 
 @Controller
 @RequestMapping(value = "/good")
-@ExposesResourceFor(Shop.class)
+@ExposesResourceFor(Goods.class)
 @EnableEntityLinks
 @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class GoodsApi {
@@ -48,15 +48,36 @@ public class GoodsApi {
    *
    * @return
    */
-  @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+  @RequestMapping(value = "/id/{id}",method = RequestMethod.GET)
   @ResponseBody
   public ResponseEntity getGood(@PathVariable Long id) throws InterruptedException, ExecutionException, TimeoutException {
     if (id == null) {
       throw new CheckedException("id can't be null");
     }
     Goods goods = goodsService.getById(id);
-    Link selfLink = entityLinks.linkToSingleResource(Shop.class, goods.getId());
+    Link selfLink = entityLinks.linkToSingleResource(Goods.class, goods.getId());
     SingleResource<JSONObject> resource = new SingleResource(goods);
+    resource.add(selfLink);
+    return ResponseEntity.ok(resource);
+  }
+
+  /**
+   * 根据登录用户获取商品信息.
+   *
+   * @return
+   */
+  @RequestMapping(value = "/id/{id}/no/{no}",method = RequestMethod.GET)
+  @ResponseBody
+  public ResponseEntity getGood(@PathVariable Long id,@PathVariable String no) throws InterruptedException, ExecutionException, TimeoutException {
+    if (id == null) {
+      throw new CheckedException("id can't be null");
+    }
+    Map<String,Object> params = new HashMap<>();
+    params.put("id",id);
+    params.put("goodsNo",no);
+    List<Goods> goodss = goodsService.findGoodsList(params);
+    Link selfLink = entityLinks.linkToSingleResource(Goods.class, "${id}");
+    CollectsResource<JSONObject> resource = new CollectsResource(goodss);
     resource.add(selfLink);
     return ResponseEntity.ok(resource);
   }
@@ -74,7 +95,7 @@ public class GoodsApi {
     Map<String,Object> params = new HashMap<>();
     params.put("categoryId",goods.getCategoryId());
     List<Goods> goodss = goodsService.findGoodsList(params);
-    Link selfLink = entityLinks.linkToSingleResource(Shop.class, "${id}");
+    Link selfLink = entityLinks.linkToSingleResource(Goods.class, "${id}");
     CollectsResource<JSONObject> resource = new CollectsResource(goodss);
     resource.add(selfLink);
     return ResponseEntity.ok(resource);
@@ -91,7 +112,7 @@ public class GoodsApi {
       throw new CheckedException("goods can't be null");
     }
     Long goodsiId = goodsService.insertGoods(goods);
-    Link selfLink = entityLinks.linkToSingleResource(Shop.class, goodsiId);
+    Link selfLink = entityLinks.linkToSingleResource(Goods.class, goodsiId);
     SingleResource<JSONObject> resource = new SingleResource(goodsiId);
     resource.add(selfLink);
     return ResponseEntity.ok(resource);
