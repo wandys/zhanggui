@@ -57,6 +57,10 @@ public class Goods implements Serializable {
 
     private List<Commodity> commodities;
 
+    private String mainImge;
+
+    private String imges;
+
     public Long getId() {
         return id;
     }
@@ -136,4 +140,21 @@ public class Goods implements Serializable {
     public void setCommodities(List<Commodity> commodities) {
         this.commodities = commodities;
     }
+
+    public String getMainImge() {
+        return mainImge;
+    }
+
+    public void setMainImge(String mainImge) {
+        this.mainImge = mainImge;
+    }
+
+    public String getImges() {
+        return imges;
+    }
+
+    public void setImges(String imges) {
+        this.imges = imges;
+    }
+
 }

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.shuidi.zhanggui.service.dal.mappers.OrderMapper">
+    <resultMap id="result" type="com.shuidi.zhanggui.service.dal.entity.Order">
+        <id column="id" property="id"/>
+        <result column="no" property="no"/>
+        <result column="shop_id" property="shopId"/>
+        <result column="money" property="money"/>
+        <result column="discount_money" property="discountMoney"/>
+        <result column="discount_detail" property="discountDetail"/>
+        <result column="amount" property="amount"/>
+        <result column="order_status" property="orderStatus"/>
+        <result column="pay_status" property="payStatus"/>
+        <result column="pay_way" property="payWay"/>
+        <result column="goods_deatil" property="goodsDeatil"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+    <sql id="selectParam">
+        id,
+        no,
+        shop_id,
+        money,
+        discount_money,
+        discount_detail,
+        amount,
+        order_status,
+        pay_status,
+        pay_way,
+        goods_deatil,
+        update_time,
+        create_time
+    </sql>
+
+    <select id="getById" resultType="com.shuidi.zhanggui.service.dal.entity.Order">
+        SELECT
+        <include refid="selectParam"></include>
+        FROM
+          order
+        WHERE
+        id = #{id}
+    </select>
+    <select id="findList" parameterType="java.util.Map" resultMap="result">
+        SELECT
+        <include refid="selectParam"></include>
+        FROM
+        order
+        <where>
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="no!=null">
+                AND no = #{no}
+            </if>
+            <if test="shopId!=null">
+                AND shop_id=#{shopId}
+            </if>
+            <if test="orderStatus!=null">
+                AND order_status=#{orderStatus}
+            </if>
+            <if test="payStatus!=null">
+                AND pay_status=#{payStatus}
+            </if>
+            <if test="payWay!=null">
+                AND pay_way=#{payWay}
+            </if>
+        </where>
+
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.shuidi.zhanggui.service.dal.entity.Order">
+        INSERT INTO
+            order(
+                no,
+                shop_id,
+                money,
+                discount_money,
+                discount_detail,
+                amount,
+                order_status,
+                pay_status,
+                pay_way,
+                goods_deatil,
+                create_time
+              )
+        VALUES (
+          #{no},
+          #{shopId},
+          #{money},
+          #{discountMoney},
+          #{discountDetail},
+          #{amount},
+          #{orderStatus},
+          #{payStatus},
+          #{payWay},
+          #{goodsDeatil},
+          #{createTime}
+        );
+    </insert>
+    <update id="update" parameterType="com.shuidi.zhanggui.service.dal.entity.Order">
+        UPDATE
+        order
+        <set>
+            <if test="orderStatus!=null">
+                order_status =#{orderStatus}
+            </if>
+            <if test="payStatus !=null">
+                pay_status = #{payStatus}
+            </if>
+            <if test="payWay !=null">
+                pay_way = #{payWay}
+            </if>
+            update_time=now()
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+</mapper>

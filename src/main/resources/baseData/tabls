@@ -15,6 +15,25 @@ CREATE TABLE uc_user
 
 #zhanggui 库
 
+CREATE TABLE `order`(
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `no` VARCHAR(20) NOT NULL COMMENT '订单编号',
+  `shop_id` BIGINT,
+  `money` INT COMMENT '总金额',
+  `discount_money` INT COMMENT '折扣金额',
+  `discount_detail` VARCHAR(100) COMMENT '折扣明细',
+  `amount` INT COMMENT '数量',
+  `order_status` VARCHAR(20) COMMENT '订单状态',
+  `pay_status` VARCHAR(20) COMMENT '支付状态',
+  `pay_way` VARCHAR(20) COMMENT '支付方式',
+  `goods_deatil` VARCHAR(500) COMMENT '订单商品详情',
+  `create_time` DATETIME,
+  `update_time` DATETIME,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX (`no`)
+);
+
+
 CREATE TABLE commodity
 (
   id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
