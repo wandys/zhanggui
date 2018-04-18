@@ -102,7 +102,7 @@ public class OrderApi {
   }
 
   /**
-   * 根据登录用户获取店铺信息.
+   * 更新订单信息.
    *
    * @return
    */
@@ -120,7 +120,7 @@ public class OrderApi {
   }
 
   /**
-   * 根据登录用户获取店铺信息.
+   * 新增店铺信息.
    *
    * @return
    */
