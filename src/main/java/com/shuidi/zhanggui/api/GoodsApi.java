@@ -10,6 +10,7 @@ import com.shuidi.zhanggui.service.bl.GoodsService;
 import com.shuidi.zhanggui.service.bl.ShopServie;
 import com.shuidi.zhanggui.service.dal.entity.Goods;
 import com.shuidi.zhanggui.service.dal.entity.Shop;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -66,14 +67,13 @@ public class GoodsApi {
    *
    * @return
    */
-  @RequestMapping(value = "/id/{id}/no/{no}",method = RequestMethod.GET)
+  @RequestMapping(value = "/no/{no}",method = RequestMethod.GET)
   @ResponseBody
-  public ResponseEntity getGood(@PathVariable Long id,@PathVariable String no) throws InterruptedException, ExecutionException, TimeoutException {
-    if (id == null) {
+  public ResponseEntity getGood(@PathVariable String no) throws InterruptedException, ExecutionException, TimeoutException {
+    if (StringUtils.isBlank(no)) {
       throw new CheckedException("id can't be null");
     }
     Map<String,Object> params = new HashMap<>();
-    params.put("id",id);
     params.put("goodsNo",no);
     List<Goods> goodss = goodsService.findGoodsList(params);
     Link selfLink = entityLinks.linkToSingleResource(Goods.class, "${id}");

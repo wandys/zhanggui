@@ -24,7 +24,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
 @Transactional
-@Service("goodsService")
+@Service("orderService")
 public class OrderServiceImpl implements OrderService {
 
   @Autowired

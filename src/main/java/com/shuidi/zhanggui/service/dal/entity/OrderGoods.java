@@ -22,7 +22,7 @@ public class OrderGoods implements Serializable {
   private Long id;
 
   /**
-   * 订单编号.
+   * 商品编号.
    */
   private String no;
 

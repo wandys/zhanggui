@@ -36,7 +36,7 @@
         SELECT
         <include refid="selectParam"></include>
         FROM
-          order
+          `order`
         WHERE
         id = #{id}
     </select>
@@ -44,7 +44,7 @@
         SELECT
         <include refid="selectParam"></include>
         FROM
-        order
+        `order`
         <where>
             <if test="id!=null">
                 AND id = #{id}
@@ -70,7 +70,7 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="id"
             parameterType="com.shuidi.zhanggui.service.dal.entity.Order">
         INSERT INTO
-            order(
+            `order`(
                 no,
                 shop_id,
                 money,
@@ -81,7 +81,8 @@
                 pay_status,
                 pay_way,
                 goods_deatil,
-                create_time
+                create_time,
+                update_time
               )
         VALUES (
           #{no},
@@ -94,12 +95,13 @@
           #{payStatus},
           #{payWay},
           #{goodsDeatil},
+          #{createTime},
           #{createTime}
         );
     </insert>
     <update id="update" parameterType="com.shuidi.zhanggui.service.dal.entity.Order">
         UPDATE
-        order
+        `order`
         <set>
             <if test="orderStatus!=null">
                 order_status =#{orderStatus}

@@ -7,6 +7,7 @@ import com.shuidi.commons.resource.SingleResource;
 import com.shuidi.zhanggui.service.bl.OrderService;
 import com.shuidi.zhanggui.service.dal.entity.Goods;
 import com.shuidi.zhanggui.service.dal.entity.Order;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -64,14 +65,13 @@ public class OrderApi {
    *
    * @return
    */
-  @RequestMapping(value = "/id/{id}/no/{no}", method = RequestMethod.GET)
+  @RequestMapping(value = "/no/{no}", method = RequestMethod.GET)
   @ResponseBody
-  public ResponseEntity getOrder(@PathVariable Long id, @PathVariable String no) {
-    if (id == null) {
+  public ResponseEntity getOrder( @PathVariable String no) {
+    if (StringUtils.isBlank(no)) {
       throw new CheckedException("id can't be null");
     }
     Map<String, Object> params = new HashMap<>();
-    params.put("id", id);
     params.put("no", no);
     List<Order> orders = orderService.findOrderList(params);
     Link selfLink = entityLinks.linkToSingleResource(Order.class, "${id}");
