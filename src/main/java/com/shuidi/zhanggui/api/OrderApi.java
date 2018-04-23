@@ -1,6 +1,7 @@
 package com.shuidi.zhanggui.api;
 
 import com.alibaba.fastjson.JSONObject;
+import com.shuidi.commons.SerialNoGenerator;
 import com.shuidi.commons.exception.CheckedException;
 import com.shuidi.commons.resource.CollectsResource;
 import com.shuidi.commons.resource.SingleResource;
@@ -67,7 +68,7 @@ public class OrderApi {
    */
   @RequestMapping(value = "/no/{no}", method = RequestMethod.GET)
   @ResponseBody
-  public ResponseEntity getOrder( @PathVariable String no) {
+  public ResponseEntity getOrder(@PathVariable String no) {
     if (StringUtils.isBlank(no)) {
       throw new CheckedException("id can't be null");
     }
@@ -130,6 +131,7 @@ public class OrderApi {
     if (order == null) {
       throw new CheckedException("order can't be null");
     }
+    order.setNo(SerialNoGenerator.orderNo());
     order.setCreateTime(new Date());
     order.setGoodsDeatil(JSONObject.toJSONString(order.getOrderGoods()));
     Long orderId = orderService.insertOrder(order);
