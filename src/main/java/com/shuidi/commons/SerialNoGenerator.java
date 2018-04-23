@@ -23,7 +23,7 @@ public class SerialNoGenerator {
    */
   public static String orderNo() {
     SnowFlake snowFlake = getGenerator();
-    String prefix = "SO";
+    String prefix = "SN";
     return generate(prefix, snowFlake.nextId());
   }
 
@@ -34,7 +34,7 @@ public class SerialNoGenerator {
    */
   public static String goodsNo() {
     SnowFlake snowFlake = getGenerator();
-    String prefix = "GO";
+    String prefix = "GN";
     return generate(prefix, snowFlake.nextId());
   }
 
