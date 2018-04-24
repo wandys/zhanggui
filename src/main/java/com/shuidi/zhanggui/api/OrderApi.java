@@ -86,15 +86,15 @@ public class OrderApi {
    *
    * @return
    */
-  @RequestMapping(value = "/", method = RequestMethod.POST)
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   @ResponseBody
-  public ResponseEntity getOrders(@RequestBody Order order) {
-    if (order == null) {
+  public ResponseEntity getOrders(Long id,String no) {
+   /* if (order == null) {
       throw new CheckedException("order can't be null");
-    }
+    }*/
     Map<String, Object> params = new HashMap<>();
-    params.put("id", order.getId());
-    params.put("no", order.getNo());
+    params.put("id", id);
+    params.put("no", no);
     List<Order> goodss = orderService.findOrderList(params);
     Link selfLink = entityLinks.linkToSingleResource(Order.class, "${id}");
     CollectsResource<JSONObject> resource = new CollectsResource(goodss);
