@@ -89,9 +89,9 @@ public class GoodsApi {
   @RequestMapping(value = "/",method = RequestMethod.GET)
   @ResponseBody
   public ResponseEntity getGoods(Long categoryId) throws InterruptedException, ExecutionException, TimeoutException {
-    if (categoryId == null) {
+    /*if (categoryId == null) {
       throw new CheckedException("id can't be null");
-    }
+    }*/
     Map<String,Object> params = new HashMap<>();
     params.put("categoryId",categoryId);
     List<Goods> goodss = goodsService.findGoodsList(params);
