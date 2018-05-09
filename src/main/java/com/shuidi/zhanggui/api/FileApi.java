@@ -47,7 +47,7 @@ public class FileApi extends BaseApi {
 
   @RequestMapping(value = "/", method = RequestMethod.POST)
   @ResponseBody
-  public ResponseEntity addBrand(MultipartFile file) throws Exception {
+  public ResponseEntity uploadImg(MultipartFile file) throws Exception {
     String contentType = file.getContentType();
     String fileName = file.getOriginalFilename();
     FileUtil.uploadFile(file.getBytes(), location, fileName);
